@@ -1,0 +1,171 @@
+"user client";
+import MainDashboardContent, { StatCard } from "./DashboardContent";
+import { getUserInfo } from "@/components/services/auth/getUserInfo";
+import { UserInfo } from "@/Types/user.interfece";
+import { Bell, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import NavDropdownMenu from "./NavDropdownMenu";
+import { NavSections } from "@/Types/dashboard.interface";
+import DashboardSideBar from "./DashboardSideBar";
+import { motion, AnimatePresence } from "framer-motion";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Menu, X, Home, Printer, FileText, Settings, Users, Package, ChevronDown, TrendingUp, CheckCircle, Clock, PlusCircle } from "lucide-react";
+
+// shadcn/ui components (assuming you have them installed)
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+// Mock data
+const chartData = [
+   { day: "Mon", prints: 1240 },
+   { day: "Tue", prints: 1560 },
+   { day: "Wed", prints: 1890 },
+   { day: "Thu", prints: 2100 },
+   { day: "Fri", prints: 1780 },
+   { day: "Sat", prints: 890 },
+   { day: "Sun", prints: 430 },
+];
+
+const recentJobs = [
+   { id: "#12345", label: "Product A", printer: "Zebra ZT410", status: "completed", time: "2 min ago" },
+   { id: "#12346", label: "Product B", printer: "Zebra GK420", status: "printing", time: "just now" },
+   { id: "#12347", label: "Product C", printer: "Zebra ZT410", status: "pending", time: "5 min ago" },
+   { id: "#12348", label: "Product D", printer: "Brother QL-800", status: "failed", time: "10 min ago" },
+   { id: "#12349", label: "Product E", printer: "Zebra ZT410", status: "completed", time: "15 min ago" },
+];
+
+type Status = "completed" | "printing" | "pending" | "failed";
+
+const statusColorMap: Record<Status, string> = {
+   completed: "green",
+   printing: "blue",
+   pending: "orange",
+   failed: "red",
+};
+
+function isStatus(s: string): s is Status {
+   return (["completed", "printing", "pending", "failed"] as const).includes(s as Status);
+}
+
+function getColor(status: string) {
+   if (isStatus(status)) return statusColorMap[status];
+   return "gray";
+}
+
+// Animation variants
+const sidebarVariants = {
+   open: { width: "16rem" },
+   closed: { width: "5rem" },
+};
+
+const itemVariants = {
+   hidden: { opacity: 0, y: 20 },
+   visible: { opacity: 1, y: 0 },
+};
+
+const containerVariants = {
+   hidden: { opacity: 0 },
+   visible: {
+      opacity: 1,
+      transition: {
+         staggerChildren: 0.1,
+      },
+   },
+};
+
+const Dashboard =  () => {
+   return (
+      <div className="flex h-screen bg-blue-600 dark:bg-gray-900">
+         {/* Sidebar */}
+         {/* <DashboardSideBar/> */}
+         {/* Main Content */}
+         <div className="flex-1 flex flex-col overflow-hidden">
+            {/* Main content area */}
+            <main className="flex-1 overflow-y-auto p-6 ">
+               <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">
+                  {/* Stats Cards */}
+                  <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+                     <StatCard title="Total Labels Today" value="12,430" change="+8.2%" icon={<Printer className="text-white" size={24} />} />
+                     <StatCard title="Active Printers" value="8/12" change="+2.5%" icon={<CheckCircle className="text-green-600 dark:text-green-400 " size={24} />} />
+                     <StatCard title="Pending Jobs" value="23" change="+5" icon={<Clock className="text-yellow-600 dark:text-yellow-400" size={24} />} />
+                     <StatCard title="Success Rate" value="98.5%" change="+1.2%" icon={<TrendingUp className="text-blue-600 dark:text-white" size={24} />} />
+                  </motion.div>
+
+                  {/* Chart and Recent Jobs */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                     {/* Bar Chart */}
+                     <motion.div variants={itemVariants} className="lg:col-span-2">
+                        <Card>
+                           <CardHeader>
+                              <CardTitle>Daily Print Volume</CardTitle>
+                           </CardHeader>
+                           <CardContent>
+                              <ResponsiveContainer width="100%" height={300}>
+                                 <BarChart data={chartData}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="day" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Bar dataKey="prints" fill="#4f46e5" />
+                                 </BarChart>
+                              </ResponsiveContainer>
+                           </CardContent>
+                        </Card>
+                     </motion.div>
+
+                     {/* Recent Print Jobs */}
+                     <motion.div variants={itemVariants}>
+                        <Card>
+                           <CardHeader>
+                              <CardTitle>Recent Jobs</CardTitle>
+                           </CardHeader>
+                           <CardContent>
+                              <div className="space-y-4">
+                                 {recentJobs.map((job) => (
+                                    <div key={job.id} className="flex items-center justify-between">
+                                       <div>
+                                          <p className="text-sm font-medium  dark:text-gray-100">
+                                             {job.id} - {job.label}
+                                          </p>
+                                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                                             {job.printer} • {job.time}
+                                          </p>
+                                       </div>
+                                       <Badge className={getColor(job.status)} variant="secondary">
+                                          {job.status}
+                                       </Badge>
+                                    </div>
+                                 ))}
+                              </div>
+                              <Button variant="link" className="mt-4 px-0 text-indigo-600">
+                                 View all jobs →
+                              </Button>
+                           </CardContent>
+                        </Card>
+                     </motion.div>
+                  </div>
+
+                  {/* Quick Action */}
+                  <motion.div variants={itemVariants}>
+                     <Card className="bg-indigo-50 dark:bg-indigo-950 border-indigo-200 dark:border-indigo-800">
+                        <CardContent className="p-6 flex items-center justify-between">
+                           <div>
+                              <h3 className="font-semibold text-indigo-800 dark:text-indigo-300 text-lg">Need to print a new label?</h3>
+                              <p className="text-sm text-indigo-600 dark:text-indigo-400">Quickly create and print barcode labels in just a few clicks.</p>
+                           </div>
+                           <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                              <PlusCircle className="mr-2 h-4 w-4" />
+                              New Print Job
+                           </Button>
+                        </CardContent>
+                     </Card>
+                  </motion.div>
+               </motion.div>
+            </main>
+         </div>
+      </div>
+   );
+};
+
+export default Dashboard;
