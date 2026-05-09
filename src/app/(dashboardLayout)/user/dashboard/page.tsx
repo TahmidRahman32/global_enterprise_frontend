@@ -1,4 +1,5 @@
-import UserDashboard from '@/components/module/Dashboard/userContent/UserDashboard';
+// import UserDashboard from '@/components/module/Dashboard/userContent/UserDashboard';
+import UserDashboard from '@/components/module/Dashboard/UserContent/UserDashboard';
 import React from 'react';
 
 const UserDashboardPage = () => {

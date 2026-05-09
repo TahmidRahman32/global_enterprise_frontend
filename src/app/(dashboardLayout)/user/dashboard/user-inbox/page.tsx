@@ -1,9 +1,11 @@
+import InboxClient from '@/components/module/Dashboard/UserContent/inbox/Inbox';
 import React from 'react';
 
 const UserInbox = () => {
+   const message: any = []
    return (
       <div>
-         <h1>User Inbox</h1>
+         <InboxClient messages={message}/>
       </div>
    );
 };
