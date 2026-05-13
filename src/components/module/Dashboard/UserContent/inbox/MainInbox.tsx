@@ -32,7 +32,7 @@ export default function Inbox({ messages = [], onMarkRead, onDelete, onReply, on
    ];
 
    return (
-      <div className="flex h-[calc(100vh-10rem)] max-h-[800px] bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+      <div className="flex h-[calc(100vh-10rem)] max-h-[800px] bg-gray-900  border border-gray-800 overflow-hidden shadow-2xl">
          {/* ── Left panel: message list ── */}
          <div className={cn("flex flex-col border-r border-gray-800 transition-all duration-200", selected ? "hidden md:flex md:w-[320px] lg:w-[360px]" : "flex w-full md:w-[320px] lg:w-[360px]")}>
             {/* List header */}

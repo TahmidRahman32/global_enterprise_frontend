@@ -120,7 +120,7 @@ export const userNavItems: NavSections[] = [
          {
             icon: "Settings",
             label: "Settings",
-            href: "/user/dashboard/settings",
+            href: "/settings",
             badge: "New",
             role: ["ADMIN", "SUPER_ADMIN"],
          },

@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import { easeOut, motion, useInView } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileBraces,  } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileBraces } from "lucide-react";
 import HeroImage from "../../../assets/Hero-image.jpg";
 import Image from "next/image";
+import { createMassageAction } from "@/components/services/message/messageFetching";
+import { toast } from "sonner";
 // import { createMassageAction } from "@/services/massage/massageFetch";
 
 const ContactPage = () => {
@@ -26,23 +28,33 @@ const ContactPage = () => {
    const formInView = useInView(formRef, { once: true, margin: "-50px" });
    const infoInView = useInView(infoRef, { once: true, margin: "-50px" });
 
-   // const handleSubmit = async (e: React.FormEvent) => {
-   //    e.preventDefault();
-   //    setIsPending(true);
-   //    try {
-   //       const result = await createMassageAction(formData);
-   //       if (result.success) {
-   //          setShowSuccess(true);
-   //          setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-   //          const timer = setTimeout(() => setShowSuccess(false), 3000);
-   //          return () => clearTimeout(timer);
-   //       }
-   //    } catch (error) {
-   //       console.error("Error submitting form:", error);
-   //    } finally {
-   //       setIsPending(false);
-   //    }
-   // };
+   const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsPending(true);
+      try {
+         const result = await createMassageAction(formData);
+         if (result.success) {
+            setShowSuccess(true);
+            toast.success("Message sent!", {
+               description: "Thanks for reaching out. I'll get back to you soon.",
+            });
+            setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+            const timer = setTimeout(() => setShowSuccess(false), 3000);
+            return () => clearTimeout(timer);
+         } else {
+            toast.error("Failed to send message.", {
+               description: result.message ?? "Please try again.",
+            });
+         }
+      } catch (error) {
+         console.error("Error submitting form:", error);
+           toast.error("Something went wrong.", {
+              description: "Please check your connection and try again.",
+           });
+      } finally {
+         setIsPending(false);
+      }
+   };
 
    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setFormData((prev) => ({
@@ -144,10 +156,7 @@ const ContactPage = () => {
                         <p className="text-slate-600 dark:text-slate-300">Thank you for reaching out. I'll get back to you soon.</p>
                      </motion.div>
                   ) : (
-                     <form
-                        // onSubmit={handleSubmit}
-                        className="space-y-6"
-                     >
+                     <form onSubmit={handleSubmit} className="space-y-6">
                         <motion.div variants={itemVariants}>
                            <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                               Full Name

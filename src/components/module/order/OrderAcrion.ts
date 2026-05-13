@@ -81,9 +81,9 @@ export async function getAllOrders(queryString: string) {
 export async function getMyOrders() {
    try {
       const response = await serverFetch.get("/order/my-order", {
+         cache: "force-cache",
          next: {
             tags: ["order-me"],
-            revalidate: 600, // 10 minutes - products rarely change
          },
       });
       const result = await response.json();

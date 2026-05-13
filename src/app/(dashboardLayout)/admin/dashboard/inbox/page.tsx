@@ -1,10 +1,17 @@
 import InboxPage from '@/components/module/Dashboard/AdminContent/inbox/InboxPage';
-import React from 'react';
+import { InboxLoader } from '@/components/module/Dashboard/AdminContent/inbox/Inboxskeleton';
+// import { InboxSkeleton } from '@/components/module/Dashboard/AdminContent/inbox/Inboxskeleton';
+import { getMassages } from '@/components/services/message/messageFetching';
+import React, { Suspense } from 'react';
 
-const Inbox = () => {
+const Inbox = async() => {
+    const allMessage = await getMassages();
+    console.log(allMessage?.data);
    return (
       <div>
-         <InboxPage />
+         <Suspense fallback={<InboxLoader />}>
+            <InboxPage messages={allMessage?.data} />
+         </Suspense>
       </div>
    );
 };
