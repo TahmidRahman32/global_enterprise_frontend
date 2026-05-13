@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { s } from "framer-motion/client";
 import { getDefaultDashboardRoute, getRouteOwner, isAuthRoute, UserRole } from "./lib/auth-utils";
 import { deleteCookie, getCookie } from "./components/services/auth/tokenHandlers";
+import { getNewAccessToken } from "./components/services/auth/auth.service";
 
 // // This function can be marked `async` if using `await` inside
 // export async function proxy(request: NextRequest) {
@@ -176,8 +177,23 @@ import { deleteCookie, getCookie } from "./components/services/auth/tokenHandler
 
 export async function proxy(request: NextRequest) {
    const pathname = request.nextUrl.pathname;
+   const hasTokenRefreshedParam = request.nextUrl.searchParams.has("tokenRefreshed");
+   if (hasTokenRefreshedParam) {
+      const url = request.nextUrl.clone();
+      url.searchParams.delete("tokenRefreshed");
+      return NextResponse.redirect(url);
+   }
+
+   const tokenRefreshResult = await getNewAccessToken();
+
+   // If token was refreshed, redirect to same page to fetch with new token
+   if (tokenRefreshResult?.tokenRefreshed) {
+      const url = request.nextUrl.clone();
+      url.searchParams.set("tokenRefreshed", "true");
+      return NextResponse.redirect(url);
+   }
    // const accessToken = request.cookies.get("accessToken")?.value || null;
-   const accessToken = await getCookie("accessToken") || null;
+   const accessToken = (await getCookie("accessToken")) || null;
 
    let userRole: UserRole | null = null;
    if (accessToken) {

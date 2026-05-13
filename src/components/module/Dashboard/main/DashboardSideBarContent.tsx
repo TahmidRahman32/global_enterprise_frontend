@@ -18,11 +18,13 @@ const sidebarVariants = {
 interface DashboardSideBarContentProps {
    userinfo: UserInfo;
    navItems: NavSections[];
-   dashboardHome: string; // Example prop for user information
+   dashboardHome: string;
 }
 
 const DashboardSideBarContent = ({ userinfo, navItems, dashboardHome }: DashboardSideBarContentProps) => {
    const [sidebarOpen, setSidebarOpen] = useState(true);
+   const sidebarTitle = userinfo?.role === "ADMIN" ? "Admin Dashboard" : "My Dashboard";
+   const sidebarInitials = userinfo?.role === "ADMIN" ? "AD" : "MD";
    return (
       <div className="flex h-screen bg-blue-600 dark:bg-gray-900">
          <motion.aside
@@ -38,11 +40,11 @@ const DashboardSideBarContent = ({ userinfo, navItems, dashboardHome }: Dashboar
                   <AnimatePresence mode="wait">
                      {sidebarOpen ? (
                         <motion.span key="logo-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-                           Admin Dashboard
+                           {sidebarTitle}
                         </motion.span>
                      ) : (
                         <motion.span key="logo-short" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mx-auto">
-                           AD
+                           {sidebarInitials}
                         </motion.span>
                      )}
                   </AnimatePresence>
@@ -60,15 +62,7 @@ const DashboardSideBarContent = ({ userinfo, navItems, dashboardHome }: Dashboar
                      if (!item.href) return null;
 
                      const IconComponent = IconsComponent(item.icon);
-                     return (
-                        <NavItem
-                           key={item.label}
-                           icon={IconComponent ? <IconComponent /> : null}
-                           label={item.label}
-                           sidebarOpen={sidebarOpen}
-                           href={item.href}
-                        />
-                     );
+                     return <NavItem key={item.label} icon={IconComponent ? <IconComponent /> : null} label={item.label} sidebarOpen={sidebarOpen} href={item.href} />;
                   }),
                )}
             </nav>

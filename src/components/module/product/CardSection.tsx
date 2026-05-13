@@ -4,26 +4,27 @@ import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { SpotlightCard } from "./ProxyCard";
+import { CardItem } from "@/Types/product.interface";
 
 // import { SpotlightCard } from "./ProxyCard";
 
 // Define proper type for card items
-export interface CardItem {
-   brand: string;
-   category: string;
-   createdAt: string;
-   description: string;
-   dynamicFields: string | null;
-   id: string;
-   isActive: boolean;
-   name: string;
-   note: string | null;
-   picture: string;
-   price: number;
-   sku: string;
-   stock: number;
-   updatedAt: string;
-}
+// export interface CardItem {
+//    brand: string;
+//    category: string;
+//    createdAt: string;
+//    description: string;
+//    dynamicFields: string | null;
+//    id: string;
+//    isActive: boolean;
+//    name: string;
+//    note: string | null;
+//    picture: string;
+//    price: number;
+//    sku: string;
+//    stock: number;
+//    updatedAt: string;
+// }
 // const items: CardItem[] = [
 //    {
 //       id: 1,
@@ -135,45 +136,7 @@ const CardSection = ({ products }: { products: CardItem[] }) => {
       },
    };
 
-   // Avatar animation
-   const avatarVariants: Variants = {
-      hidden: { scale: 0, rotate: -180 },
-      visible: {
-         scale: 1,
-         rotate: 0,
-         transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 10,
-            delay: 0.2,
-         },
-      },
-      hover: {
-         rotate: 360,
-         scale: 1.1,
-         transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 15,
-            duration: 0.8,
-         },
-      },
-   };
-
-   // Text animation
-   const textVariants: Variants = {
-      hidden: { opacity: 0, x: -20 },
-      visible: {
-         opacity: 1,
-         x: 0,
-         transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 12,
-         },
-      },
-   };
-
+  
    // Title animation
    const titleVariants: Variants = {
       hidden: { opacity: 0, y: -30 },

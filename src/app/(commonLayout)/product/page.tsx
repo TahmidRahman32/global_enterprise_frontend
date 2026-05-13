@@ -6,7 +6,7 @@ import React from 'react';
 
 const page = async () => {
    const products = await getProducts();
-   // console.log(products)
+   console.log(products)
    return (
       <div>
          <HeroProductCarousel products={products?.data?.data} />

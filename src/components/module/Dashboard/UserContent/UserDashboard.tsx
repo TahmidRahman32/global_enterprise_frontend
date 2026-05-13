@@ -3,54 +3,18 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import { Menu, X, Printer, FileText, Settings, Users, Package, Bell, Search, ChevronDown, TrendingUp, CheckCircle, Clock, PlusCircle, ChevronLeft, ChevronRight, Home, LogOut } from "lucide-react";
+import {  Printer,  TrendingUp, CheckCircle, Clock,  ChevronLeft, ChevronRight } from "lucide-react";
 
 // shadcn/ui components
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
-import { FaProductHunt } from "react-icons/fa";
-
-// Assume you have this — or define here
-const navItems = [
-   { label: "Home", href: "/", icon: Home },
-   { label: "Profile", href: "/my-profile", icon: FileText },
-   { label: "Product", href: "/products", icon: FaProductHunt },
-   { label: "Users", href: "/users", icon: Users },
-   { label: "Settings", href: "/settings", icon: Settings },
-   { label: "Logout", href: "/", icon: LogOut },
-];
+import { CardItem } from "@/Types/product.interface";
+import Image from "next/image";
 
 const pieData = [
    { name: "Zebra ZT410", value: 420, color: "#4f46e5" },
    { name: "Zebra GK420", value: 380, color: "#10b981" },
    { name: "Brother QL-800", value: 250, color: "#f59e0b" },
    { name: "Other", value: 180, color: "#ef4444" },
-];
-
-const sliderItems = [
-   {
-      id: 1,
-      title: "New Firmware Update",
-      subtitle: "Zebra ZT410 v2.1 – Improved speed & reliability",
-      bg: "from-indigo-600 to-purple-600",
-   },
-   {
-      id: 2,
-      title: "Bulk Label Printing",
-      subtitle: "Save 30% time with batch processing",
-      bg: "from-emerald-600 to-teal-600",
-   },
-   {
-      id: 3,
-      title: "Low Ink Alert",
-      subtitle: "3 printers need attention this week",
-      bg: "from-amber-600 to-orange-600",
-   },
 ];
 
 const containerVariants = {
@@ -63,21 +27,18 @@ const itemVariants = {
    visible: { opacity: 1, y: 0 },
 };
 
-const UserDashboard: React.FC = () => {
-   const [sidebarOpen, setSidebarOpen] = useState(true);
+const UserDashboard = ({ products }: { products: CardItem[] }) => {
+    const productLimit = products.slice(0, 4);
    const [currentSlide, setCurrentSlide] = useState(0);
 
-   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % sliderItems.length);
-   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + sliderItems.length) % sliderItems.length);
+   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % productLimit.length);
+   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + productLimit.length) % productLimit.length);
 
    return (
       <div className="flex h-screen  dark:bg-gray-950">
-       
-
          {/* Main Area */}
          <div className="flex-1 flex flex-col overflow-hidden">
             {/* Header */}
-         
 
             {/* Content */}
             <main className="flex-1 overflow-y-auto p-6 bg-gray-50/50 dark:bg-gray-950/50">
@@ -94,11 +55,12 @@ const UserDashboard: React.FC = () => {
                                  animate={{ opacity: 1, x: 0 }}
                                  exit={{ opacity: 0, x: -60 }}
                                  transition={{ duration: 0.5 }}
-                                 className={`absolute inset-0 bg-gradient-to-br ${sliderItems[currentSlide].bg} flex items-center justify-center text-white px-8`}
+                                 className={`absolute inset-0 bg-gradient-to-br ${productLimit[currentSlide].picture} flex items-center justify-center text-white px-8`}
                               >
+                                 <Image src={productLimit[currentSlide].picture} alt="" fill className="object-cover opacity-20" priority sizes="100vw" />
                                  <div className="text-center max-w-md">
-                                    <h2 className="text-3xl md:text-4xl font-bold mb-3">{sliderItems[currentSlide].title}</h2>
-                                    <p className="text-lg opacity-90">{sliderItems[currentSlide].subtitle}</p>
+                                    <h2 className="text-3xl md:text-4xl font-bold mb-3">{products[currentSlide].name}</h2>
+                                    <p className="text-lg opacity-90">{products[currentSlide].description}</p>
                                  </div>
                               </motion.div>
                            </AnimatePresence>
@@ -111,7 +73,7 @@ const UserDashboard: React.FC = () => {
                            </button>
 
                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-                              {sliderItems.map((_, i) => (
+                              {productLimit.map((_, i) => (
                                  <button key={i} onClick={() => setCurrentSlide(i)} className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? "bg-white scale-125" : "bg-white/50"}`} />
                               ))}
                            </div>

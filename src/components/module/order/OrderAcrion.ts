@@ -3,6 +3,7 @@
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidator } from "@/lib/zodValidator";
 import { orderSchema } from "@/zod/order.validation";
+import { revalidateTag } from "next/cache";
 
 export async function submitOrder(prevState: any, formData: FormData) {
    const raw = {
@@ -35,7 +36,9 @@ export async function submitOrder(prevState: any, formData: FormData) {
          body: JSON.stringify(orderData),
       });
       const responseData = await response.json();
-      console.log(responseData);
+      if (responseData.success) {
+         revalidateTag("order-list", { expire: 0 });
+      }
 
       if (!response.ok || responseData?.success === false) {
          return {
@@ -62,6 +65,8 @@ export async function submitOrder(prevState: any, formData: FormData) {
 export async function getAllOrders(queryString: string) {
    try {
       const response = await serverFetch.get(`/order/all${queryString ? `?${queryString}` : ""}`, {
+         cache: "force-cache",
+         next: { tags: ["order-list"] },
       });
       const result = await response.json();
       return result;
@@ -92,10 +97,8 @@ export async function getMyOrders() {
    }
 }
 
-
-
 export async function UpdateStatusByOrder(id: string, payload: string) {
-   console.log(id,payload)
+   console.log(id, payload);
    try {
       const response = await serverFetch.patch(`/order/${id}`, {
          headers: {
@@ -104,7 +107,8 @@ export async function UpdateStatusByOrder(id: string, payload: string) {
          body: JSON.stringify({ status: payload }),
       });
       const result = await response.json();
-      console.log(result, "result");
+      // console.log(result, "result");
+      revalidateTag("order-me", { expire: 0 });
       return result;
    } catch (error: any) {
       console.log(error);

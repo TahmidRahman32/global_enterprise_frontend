@@ -5,6 +5,7 @@ import { UserInfo } from "@/Types/user.interfece";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import commonImg from "@/assets/mainLogo.jpg";
+import Link from "next/link";
 
 interface NavDropdownMenuProps {
    // You can add props here if needed, e.g. user info, logout handler, etc.
@@ -26,16 +27,22 @@ const NavDropdownMenu = ({ userinfo }: NavDropdownMenuProps) => {
                <DropdownMenuGroup>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <div className="flex flex-col justify-center items-center my-5">
-                     <Image src={userinfo.profilePhoto ? userinfo.profilePhoto : commonImg} alt="Avatar" className="w-10 h-10 rounded-full" />
+                     <Image src={userinfo.profilePhoto ? userinfo.profilePhoto : commonImg} alt="Avatar" className="w-16 h-16 rounded-full" width={60} height={60} />
                      <span className="text-sm font-medium">{userinfo.name}</span>
                      <p>{userinfo.email}</p>
                   </div>
                </DropdownMenuGroup>
                <DropdownMenuSeparator />
                <DropdownMenuGroup>
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem className={"font-primary-bebas font-bold py-1"}>
+                     <Link href={"/my-profile"}>Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className={"font-primary-bebas font-bold py-1"}>
+                     <Link href={"/my-profile"}>Billing</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className={"font-primary-bebas font-bold py-1"}>
+                     <Link href={"/settings"}>Settings</Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem>
                      {/* <Button variant="ghost" onClick={handleLogout} className="w-full text-left">
                         Logout

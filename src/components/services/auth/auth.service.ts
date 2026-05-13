@@ -51,6 +51,47 @@ export async function updateMyProfile(formData: FormData) {
    }
 }
 
+
+// export async function updateMyProfile(formData: FormData) {
+//    try {
+//       const file = formData.get("file") as File | null;
+
+//       // ✅ Remove empty files
+//       if (file && file.size === 0) {
+//          formData.delete("file");
+//       }
+
+//       const response = await serverFetch.patch(`/user/update-my-profile`, {
+   
+//          body: formData,
+//       });
+
+//       const text = await response.text();
+//       if (!text) {
+//          return {
+//             success: false,
+//             message: "Empty response from server",
+//          };
+//       }
+
+//       const result = JSON.parse(text);
+//       console.log(result)
+
+//       if (result.success) {
+//          revalidateTag("user-info", { expire: 0 });
+//       }
+
+//       return result;
+//    } catch (error: any) {
+//       console.error("Update profile error:", error);
+//       return {
+//          success: false,
+//          message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
+//       };
+//    }
+// }
+
+
 // Reset Password
 export async function resetPassword(_prevState: any, formData: FormData) {
    const isEmailReset = formData.get("isEmailReset") === "true";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -9,8 +9,16 @@ import { Home, ArrowLeft, Compass } from "lucide-react";
 
 const NotFoundPage = () => {
    const router = useRouter();
+   const [,startTransition] = useTransition();
    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
    const [particles, setParticles] = useState<Array<{ x: number; y: number; duration: number }>>([]);
+
+   const handleBack = () =>{
+       startTransition(()=>{
+         router.back()
+       
+       })
+   }
 
    useEffect(() => {
       const handleMouseMove = (e: MouseEvent) => {
@@ -104,14 +112,14 @@ const NotFoundPage = () => {
                      <Home className="w-4 h-4" /> Back to Home
                   </Link>
                </Button>
-               <Button variant="outline" size="lg" className="border-teal-400 text-teal-400 hover:bg-teal-400/10 gap-2 hover:scale-105 transition-transform" onClick={() => router.back()}>
+               <Button variant="outline" size="lg" className="border-teal-400 text-teal-400 hover:bg-teal-400/10 gap-2 hover:scale-105 transition-transform" onClick={handleBack}>
                   <ArrowLeft className="w-4 h-4" /> Go Back
                </Button>
             </motion.div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="mt-12 text-sm text-gray-500">
                <p>You might find these links helpful:</p>
-               <div className="flex gap-5 justify-center mt-3">
+               {/* <div className="flex gap-5 justify-center mt-3">
                   <Link href="/" className="hover:text-[#bb931c] transition-colors">
                      Home
                   </Link>
@@ -124,7 +132,7 @@ const NotFoundPage = () => {
                   <Link href="/blog" className="hover:text-[#bb931c] transition-colors">
                      Blog
                   </Link>
-               </div>
+               </div> */}
             </motion.div>
          </div>
 

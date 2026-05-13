@@ -89,7 +89,7 @@ export const getUserInfo = async (): Promise<UserInfo | any> => {
       }
 
       userInfo = {
-         name: result.data.admin?.name || result.data.admin?.name || result.data.super_admin?.name || result.data.name || "Unknown User",
+         name: result.data.admin?.name || result.data.user?.name || result.data.super_admin?.name || result.data.name || "Unknown User",
          ...result.data,
       };
 

@@ -223,14 +223,14 @@ export default function OrderTable({ orders: apiOrders }: { orders: ApiOrder[] }
                               <StatusBadge status={order.status} />
                               <div className="flex gap-1">
                                  <button onClick={() => handleView(order)} className="p-2 rounded-lg text-gray-400 hover:text-indigo-400 hover:bg-gray-800 transition-colors" title="View order">
-                                    <Eye className="w-4 h-4" />
+                                    <Eye className="w-4 h-4"  />
                                  </button>
                                  <button className="p-2 rounded-lg text-gray-400 hover:text-amber-400 hover:bg-gray-800 transition-colors" title="Edit order">
                                     <UpdateOrderStatusFrom
                                        trigger={
-                                          <Button variant="outline" size="sm">
+                                          <button >
                                              <Pencil className="h-4 w-4" />
-                                          </Button>
+                                          </button>
                                        }
                                        currentStatus={order.status}
                                        onConfirm={(newStatus) => handleEdit(order.id, newStatus)}
