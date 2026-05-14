@@ -1,7 +1,7 @@
 import Footer from '@/components/shared/Footer/PublicFooter';
 import Navbar from '@/components/shared/navbar/PublicNavbar';
 import React from 'react';
-
+export const dynamic = "force-dynamic";
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
    return (
       <div>

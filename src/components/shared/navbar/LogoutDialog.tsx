@@ -17,14 +17,13 @@ const LogoutDialog = () => {
          <AlertDialog>
             <AlertDialogTrigger>
                <motion.div variants={itemVariants}>
-                  <motion.button
+                  <motion.span
                      variants={buttonVariants}
                      initial="initial"
-                     type="submit"
                      className="w-full bg-gradient-to-r from-[#c4840d] to-[text-black py-1 font-primary-bebas rounded-lg shadow-lg hover:shadow-xl transition-shadow disabled:opacity-70 disabled:cursor-not-allowed px-5 transform-gpu hover:scale-[1.04] active:scale-[0.98]  duration-500 text-xl"
                   >
                      Logout
-                  </motion.button>
+                  </motion.span>
                </motion.div>
             </AlertDialogTrigger>
             <AlertDialogContent>

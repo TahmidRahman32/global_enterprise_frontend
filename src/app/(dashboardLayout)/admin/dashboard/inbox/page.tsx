@@ -3,10 +3,10 @@ import { InboxLoader } from '@/components/module/Dashboard/AdminContent/inbox/In
 // import { InboxSkeleton } from '@/components/module/Dashboard/AdminContent/inbox/Inboxskeleton';
 import { getMassages } from '@/components/services/message/messageFetching';
 import React, { Suspense } from 'react';
-
+export const dynamic = "force-dynamic";
 const Inbox = async() => {
     const allMessage = await getMassages();
-    console.log(allMessage?.data);
+   //  console.log(allMessage?.data);
    return (
       <div>
          <Suspense fallback={<InboxLoader />}>

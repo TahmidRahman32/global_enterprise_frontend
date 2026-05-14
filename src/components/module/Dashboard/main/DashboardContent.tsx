@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Menu, X, Home, Printer, FileText, Settings, Users, Package, Bell, Search, ChevronDown, TrendingUp, CheckCircle, Clock, PlusCircle } from "lucide-react";
@@ -7,15 +6,8 @@ import { Menu, X, Home, Printer, FileText, Settings, Users, Package, Bell, Searc
 // shadcn/ui components (assuming you have them installed)
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-// import { LogoutDialog } from "@/components/shared/AlertDialogLogout";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Input } from "@/components/ui/input";
-import { AdminNavItems } from "../NavLink/Nav";
-import { UserInfo } from "@/Types/user.interfece";
-import NavDropdownMenu from "./NavDropdownMenu";
-import DashboardSideBarContent from "./DashboardSideBarContent";
-import DashboardSideBar from "./DashboardSideBar";
+
+
 import { Badge } from "@/components/ui/badge";
 
 // Mock data

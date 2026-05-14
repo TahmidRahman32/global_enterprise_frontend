@@ -5,108 +5,6 @@ import { CATEGORIES, Category, CATEGORY_COLORS, Product } from "./product.interf
 import { Modal } from "./productModal";
 import Link from "next/link";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
-
-
-
-
-
-// ─── Mock Data ────────────────────────────────────────────────────────────────
-
-const MOCK_PRODUCTS: Product[] = [
-   {
-      id: "3e7b9161-b65e-4058-89cb-b3104c58ce1c",
-      name: "Tahmid Rahman",
-      brand: "Global Enterprise",
-      category: "Clothing",
-      description: "dfgsdfgsdg dfgd erds",
-      dynamicFields: null,
-      isActive: true,
-      note: null,
-      orderId: "b16192cd-5e0b-4765-bcf2-587dba901877",
-      picture: "https://res.cloudinary.com/dzyoln3u2/image/upload/v1777884165/348959958_767340848455629_1221980056712011193_n.jpg-1777884165154.jpg",
-      price: 455,
-      sku: "SKU-1777884165928",
-      stock: 4,
-      createdAt: "2026-05-04T08:42:46.814Z",
-      updatedAt: "2026-05-07T12:33:55.000Z",
-   },
-   {
-      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      name: "Logo Sticker Pack",
-      brand: "StickerPro",
-      category: "Sticker",
-      description: "High-quality vinyl stickers for branding",
-      dynamicFields: null,
-      isActive: true,
-      note: "Best seller",
-      orderId: "c27283de-6f1c-5876-cdg3-698ecb012988",
-      picture: "https://res.cloudinary.com/dzyoln3u2/image/upload/v1777884165/348959958_767340848455629_1221980056712011193_n.jpg-1777884165154.jpg",
-      price: 120,
-      sku: "SKU-1234567890",
-      stock: 50,
-      createdAt: "2026-04-10T10:00:00.000Z",
-      updatedAt: "2026-05-01T09:00:00.000Z",
-   },
-   {
-      id: "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-      name: "Satin Ribbon Roll",
-      brand: "RibbonCo",
-      category: "Ribbon",
-      description: "Premium satin ribbon for gifting",
-      dynamicFields: null,
-      isActive: false,
-      note: null,
-      orderId: "d38394ef-7g2d-6987-deh4-709fdc123099",
-      picture: "https://res.cloudinary.com/dzyoln3u2/image/upload/v1777884165/348959958_767340848455629_1221980056712011193_n.jpg-1777884165154.jpg",
-      price: 80,
-      sku: "SKU-0987654321",
-      stock: 0,
-      createdAt: "2026-03-22T14:30:00.000Z",
-      updatedAt: "2026-04-15T11:45:00.000Z",
-   },
-   {
-      id: "c3d4e5f6-a7b8-9012-cdef-123456789012",
-      name: "Laser Printer X200",
-      brand: "PrintMaster",
-      category: "Printer",
-      description: "High-speed commercial laser printer",
-      dynamicFields: null,
-      isActive: true,
-      note: "Requires toner",
-      orderId: "e49405fg-8h3e-7098-efi5-810ged234100",
-      picture: "https://res.cloudinary.com/dzyoln3u2/image/upload/v1777884165/348959958_767340848455629_1221980056712011193_n.jpg-1777884165154.jpg",
-      price: 12500,
-      sku: "SKU-1122334455",
-      stock: 8,
-      createdAt: "2026-02-18T08:00:00.000Z",
-      updatedAt: "2026-05-03T16:20:00.000Z",
-   },
-   {
-      id: "d4e5f6a7-b8c9-0123-defa-234567890123",
-      name: "Mystery Bundle",
-      brand: "Misc Brand",
-      category: "Other",
-      description: "Assorted promotional items",
-      dynamicFields: null,
-      isActive: true,
-      note: null,
-      orderId: "f50516gh-9i4f-8109-fgj6-921hfe345211",
-      picture: "https://res.cloudinary.com/dzyoln3u2/image/upload/v1777884165/348959958_767340848455629_1221980056712011193_n.jpg-1777884165154.jpg",
-      price: 299,
-      sku: "SKU-5566778899",
-      stock: 15,
-      createdAt: "2026-01-05T07:00:00.000Z",
-      updatedAt: "2026-05-06T10:00:00.000Z",
-   },
-];
-
-
-
-
-
-// ─── Icons (inline SVG) ───────────────────────────────────────────────────────
-
 const EyeIcon = () => (
    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -166,12 +64,13 @@ export default function ProductTable({ product }: { product: Product[] }) {
       mode: "view" | "edit" | "delete";
    } | null>(null);
 
-   const filtered = products.filter((p) => {
-      const matchCat = categoryFilter === "All" || p.category === categoryFilter;
-      const q = search.toLowerCase();
-      const matchSearch = !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
-      return matchCat && matchSearch;
-   });
+   const filtered =
+      products?.filter((p) => {
+         const matchCat = categoryFilter === "All" || p.category === categoryFilter;
+         const q = search.toLowerCase();
+         const matchSearch = !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
+         return matchCat && matchSearch;
+      }) || [];
 
    const allSelected = filtered.length > 0 && filtered.every((p) => selectedIds.has(p.id));
 

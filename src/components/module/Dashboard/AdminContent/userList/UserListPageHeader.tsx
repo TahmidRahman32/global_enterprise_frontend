@@ -12,7 +12,7 @@ interface UserListFetcherProps {
 const UserListFetcher = async ({ searchParams }: UserListFetcherProps) => {
    const queryString = queryStringFormatter(searchParams);
    const userList = await getAllUsers(queryString);
-   console.log(userList?.data?.meta, "add meta");
+   // console.log(userList?.data?.meta, "add meta");
    const userMetaData = userList?.data?.meta; 
    const totalPages = Math.ceil(userMetaData.total / userMetaData.limit)
    // console.log(totalPages)

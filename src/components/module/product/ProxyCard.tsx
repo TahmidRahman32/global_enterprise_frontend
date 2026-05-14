@@ -2,8 +2,9 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { CardItem } from "./CardSection";
+
 import Link from "next/link";
+import { CardItem } from "@/Types/product.interface";
 
 export const SpotlightCard = ({ card }: { card: CardItem }) => {
    // console.log(card)

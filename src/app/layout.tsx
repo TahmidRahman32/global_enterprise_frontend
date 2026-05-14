@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import LogoutSuccessToast from "@/components/shared/navbar/LogoutSuccessToast";
 import LoginSuccessToast from "@/components/shared/navbar/LoginSuccessToast";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

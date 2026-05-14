@@ -3,6 +3,7 @@
 import MyProfile from "@/components/module/commonLayout/MyProfile/MyProfile";
 import { getUserInfo } from "@/components/services/auth/getUserInfo";
 import React from "react";
+export const dynamic = "force-dynamic";
 
 const MyProfilePage = async () => {
    const userInfo = await getUserInfo();

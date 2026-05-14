@@ -9,8 +9,9 @@ import * as z from "zod";
 // import { loginSchema } from "@/zod/auth.validation";
 import { toast } from "sonner";
 import { ActionState, buttonVariants, containerVariants, itemVariants } from "@/Types/loginTypes";
-import { submitActionLogin } from "@/components/services/auth/login.service";
+
 import { loginSchema } from "@/zod/auth.validation";
+import { submitActionLogin } from "@/components/services/auth/login.service";
 
 // Define the form schema with Zod
 type LoginFormData = z.infer<typeof loginSchema>;
