@@ -56,7 +56,7 @@ const ProductForm: React.FC = () => {
 
      useEffect(() => {
         if (state?.success === false && state?.message) {
-           toast.error(state.message);
+           toast.error(`${state.message} Check your input`);
         } else if (state?.success === true) {
            toast.success("Product created!");
         }

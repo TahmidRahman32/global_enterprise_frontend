@@ -30,9 +30,11 @@ export async function updateProduct(id: string, payload: Partial<Product>): Prom
 
 // ─── Delete a product (DELETE /api/products/:id) ──────────────────────────────
 export async function deleteProduct(id: string) {
+   console.log(id)
    const res = await serverFetch.delete(`/product/${id}`, {});
 
    const result = await res.json();
+   console.log(result,"testing delete product")
   
 
    if (!res.ok) {
@@ -41,3 +43,35 @@ export async function deleteProduct(id: string) {
 
    return result;
 }
+
+// src/components/module/Dashboard/AdminContent/MyProduct/ProductAction.ts
+// export async function deleteProduct(id: string) {
+//   try {
+//     const response = await serverFetch.delete(`/product/${id}`, {
+
+//     });
+//     console.log(response, "res")
+
+//     if (!response.ok) {
+//       // Handle 404, 500, etc.
+//       const errorData = await response.json().catch(() => ({}));
+//       console.log(errorData)
+//       return { 
+//         success: false, 
+//         status: response.status,
+//         message: errorData.message || `HTTP ${response.status}` 
+//       };
+//     }
+
+//     const data = await response.json();
+//     return { success: true, data };
+//   } catch (error) {
+//     // Network errors (Failed to fetch, ERR_CONNECTION_CLOSED)
+//     console.error('Network error in deleteProduct:', error);
+//     return { 
+//       success: false, 
+//       isNetworkError: true,
+//       message: 'Cannot reach server. Please check your internet connection and try again.' 
+//     };
+//   }
+// }

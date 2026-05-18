@@ -35,19 +35,19 @@ const UserDashboard = ({ products }: { products: CardItem[] }) => {
    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + productLimit.length) % productLimit.length);
 
    return (
-      <div className="flex h-screen  dark:bg-gray-950">
+      <div className="flex h-screen bg-gray-400  dark:bg-gray-950">
          {/* Main Area */}
          <div className="flex-1 flex flex-col overflow-hidden">
             {/* Header */}
 
             {/* Content */}
-            <main className="flex-1 overflow-y-auto p-6 bg-gray-50/50 dark:bg-gray-950/50">
+            <main className="flex-1 overflow-y-auto p-6 bg-gray-500/50 dark:bg-gray-950/50">
                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
                   {/* Slider + Pie Chart */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
                      {/* Content Slider */}
                      <motion.div variants={itemVariants}>
-                        <Card className="overflow-hidden h-80 md:h-[500px] relative">
+                        <Card className="overflow-hidden h-80 md:h-[500px] relative bg-black/80">
                            <AnimatePresence mode="wait">
                               <motion.div
                                  key={currentSlide}

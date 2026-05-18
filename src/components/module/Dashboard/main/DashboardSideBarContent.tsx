@@ -26,7 +26,7 @@ const DashboardSideBarContent = ({ userinfo, navItems, dashboardHome }: Dashboar
    const sidebarTitle = userinfo?.role === "ADMIN" ? "Admin Dashboard" : "My Dashboard";
    const sidebarInitials = userinfo?.role === "ADMIN" ? "AD" : "MD";
    return (
-      <div className="flex h-screen bg-blue-600 dark:bg-gray-900">
+      <div className="flex h-screen bg-gray-400 dark:bg-gray-900">
          <motion.aside
             initial={sidebarOpen ? "open" : "closed"}
             animate={sidebarOpen ? "open" : "closed"}

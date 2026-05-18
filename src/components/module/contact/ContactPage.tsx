@@ -98,12 +98,12 @@ const ContactPage = () => {
    ];
 
    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-blue-500 dark:from-slate-900 dark:to-[#020e11]">
+      <div className="min-h-screen bg-gradient-to-br from-slate-400 to-slate-700 dark:from-slate-900 dark:to-[#020e11]">
          <div className="absolute inset-0 z-0">
-            <Image src={HeroImage} alt="Background" fill className="object-cover opacity-20" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw" />
+            <Image src={HeroImage} alt="Background" className="object-cover opacity-20" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw " />
          </div>
          {/* Animated Background Elements */}
-         <div className="fixed inset-0 overflow-hidden pointer-events-none">
+         <div className="fixed inset-0 overflow-hidden pointer-events-none ">
             <motion.div
                animate={{
                   x: [0, 100, 0],
@@ -114,7 +114,7 @@ const ContactPage = () => {
                   repeat: Infinity,
                   ease: "linear",
                }}
-               className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200/20 dark:bg-blue-400/10 rounded-full blur-3xl"
+               className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/20 dark:bg-blue-400/10 rounded-full blur-3xl"
             />
             <motion.div
                animate={{
@@ -137,14 +137,14 @@ const ContactPage = () => {
                <motion.h1 initial={{ scale: 0.9 }} animate={headerInView ? { scale: 1 } : {}} transition={{ delay: 0.2, duration: 0.6 }} className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6">
                   Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500">Connect</span>
                </motion.h1>
-               <motion.p initial={{ opacity: 0 }} animate={headerInView ? { opacity: 1 } : {}} transition={{ delay: 0.4, duration: 0.6 }} className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+               <motion.p initial={{ opacity: 0 }} animate={headerInView ? { opacity: 1 } : {}} transition={{ delay: 0.4, duration: 0.6 }} className="text-xl text-slate-800 dark:text-slate-300 max-w-2xl mx-auto">
                   Have a project in mind? Let's discuss how we can bring your ideas to life. I'm always open to new opportunities and interesting challenges.
                </motion.p>
             </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto bg-slate-700/70 rounded-3xl pr-4">
                {/* Contact Form */}
-               <motion.div ref={formRef} variants={containerVariants} initial="hidden" animate={formInView ? "visible" : "hidden"} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/20">
+               <motion.div ref={formRef} variants={containerVariants} initial="hidden" animate={formInView ? "visible" : "hidden"} className="  backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/20">
                   <motion.h2 variants={itemVariants} className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
                      Send me a message
                   </motion.h2>
@@ -158,7 +158,7 @@ const ContactPage = () => {
                   ) : (
                      <form onSubmit={handleSubmit} className="space-y-6">
                         <motion.div variants={itemVariants}>
-                           <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                           <label htmlFor="name" className="block text-sm font-medium text-slate-900 dark:text-slate-400 mb-2">
                               Full Name
                            </label>
                            <input
@@ -174,7 +174,7 @@ const ContactPage = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants}>
-                           <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                           <label htmlFor="email" className="block text-sm font-medium text-slate-900 dark:text-slate-300 mb-2">
                               Email Address <span className="text-slate-400">(optional)</span>
                            </label>
                            <input
@@ -189,7 +189,7 @@ const ContactPage = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants}>
-                           <label htmlFor="phone" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                           <label htmlFor="phone" className="block text-sm font-medium text-slate-900 dark:text-slate-300 mb-2">
                               Phone Number <span className="text-slate-400">(optional)</span>
                            </label>
                            <input
@@ -204,7 +204,7 @@ const ContactPage = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants}>
-                           <label htmlFor="subject" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                           <label htmlFor="subject" className="block text-sm font-medium text-slate-900 dark:text-slate-300 mb-2">
                               Subject
                            </label>
                            <input
@@ -220,7 +220,7 @@ const ContactPage = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants}>
-                           <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                           <label htmlFor="message" className="block text-sm font-medium text-slate-900 dark:text-slate-300 mb-2">
                               Message
                            </label>
                            <textarea

@@ -76,7 +76,7 @@ const containerVariants = {
 
 const Dashboard =  () => {
    return (
-      <div className="flex h-screen bg-blue-600 dark:bg-gray-900">
+      <div className="flex h-screen bg-gray-500 dark:bg-gray-900">
          {/* Sidebar */}
          {/* <DashboardSideBar/> */}
          {/* Main Content */}

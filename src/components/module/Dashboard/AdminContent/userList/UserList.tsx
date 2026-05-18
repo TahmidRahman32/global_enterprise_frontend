@@ -117,7 +117,7 @@ export default function UserList({ userList = [], onView, onEdit, onDelete, onSt
    };
 
    return (
-      <div className="w-full">
+      <div className="w-full ">
         
          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <Table className="min-w-[640px] md:min-w-full">
@@ -156,7 +156,7 @@ export default function UserList({ userList = [], onView, onEdit, onDelete, onSt
                            <TableCell className="text-gray-300 text-sm sm:text-base max-w-[150px] sm:max-w-none truncate">{user.email}</TableCell>
 
                            {/* Role – hidden on mobile */}
-                           <TableCell className="hidden sm:table-cell text-gray-400 capitalize text-sm sm:text-base">{user.role}</TableCell>
+                           <TableCell className="hidden sm:table-cell text-gray-500 capitalize text-sm sm:text-base">{user.role}</TableCell>
 
                            {/* Status Badge */}
                            <TableCell>

@@ -10,9 +10,9 @@ const UserListPage = async ({ searchParams }: { searchParams: Promise<{ [key: st
    const searchParamsObj = await searchParams;
 
    return (
-      <div>
-         <div className="relative flex flex-col justify-center items-center mt-8">
-            <h2 className="font-primary-inter font-bold text-3xl pb-16 relative inline-block">
+      <div className="dark:bg-gray-800 bg-gray-400">
+         <div className="relative flex flex-col justify-center items-center ">
+            <h2 className="font-primary-inter font-bold text-3xl pb-16 relative inline-block pt-8">
                User List
                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#bd9520] to-transparent" />
             </h2>

@@ -10,9 +10,9 @@ import { UserInfo } from '@/Types/user.interfece';
 const DashboardNavbar = async() => {
    const userInfo = (await getUserInfo()) as UserInfo;
    return (
-      <div >
+      <div>
          {/* Header */}
-         <header className=" dark:bg-gray-800 shadow-sm h-16 flex items-center justify-between px-6 border-b border-gray-200 dark:border-gray-700">
+         <header className="bg-gray-400 dark:bg-gray-800 shadow-sm h-16 flex items-center justify-between px-6 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center flex-1 max-w-md ">
                <div className="relative w-full">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />

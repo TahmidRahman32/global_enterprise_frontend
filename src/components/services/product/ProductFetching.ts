@@ -1,5 +1,7 @@
+"use server"
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidator } from "@/lib/zodValidator";
+import { revalidateTag } from "next/cache";
 // import { revalidateTag } from "next/cache";
 import z from "zod";
 
@@ -470,7 +472,7 @@ export async function CreateProductFetching(_prevState: any, formData: FormData)
       const result = await response.json();
 
       if (result.success) {
-      // revalidateTag("products-list", "max");
+      revalidateTag("products-list", "max");
       }
 
       return result;
@@ -507,7 +509,7 @@ export async function getProductById(id: string) {
    try {
       const response = await serverFetch.get(`/product/${id}`, {
          next: {
-            tags: [`product-list`]// 10 minutes - product details rarely change
+            tags: [`product-list`]
          },
       });
       const result = await response.json();

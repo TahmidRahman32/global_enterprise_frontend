@@ -22,7 +22,7 @@ export default async function Navbar() {
       <div className="container mx-auto p-0 absolute top-4 left-0 right-0">
          <header
             className=" shadow-2xl container mx-auto md:rounded-full fixed z-50
-                    bg-gradient-to-br from-white/30 to-white/10 
+                    bg-gradient-to-br from-white/60 to-white/30 
                     dark:from-gray-900/30 dark:to-gray-800/10 
                     backdrop-blur-xl backdrop-saturate-150
                     border border-white/40 dark:border-gray-700/30

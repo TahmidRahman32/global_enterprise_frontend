@@ -73,12 +73,11 @@ const containerVariants = {
 const MainDashboardContent = () => {
 
    return (
-      <div className="flex h-screen bg-blue-600 dark:bg-gray-900">
+      <div className="flex h-screen bg-gray-300 dark:bg-gray-900">
          {/* Sidebar */}
          {/* <DashboardSideBar/> */}
          {/* Main Content */}
          <div className="flex-1 flex flex-col overflow-hidden">
-
             {/* Main content area */}
             <main className="flex-1 overflow-y-auto p-6 ">
                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">

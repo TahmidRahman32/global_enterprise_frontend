@@ -51,6 +51,7 @@ export function Modal({ product, mode, onClose, onSave, onDelete }: ModalProps) 
 
    // ── Delete (delete mode) ────────────────────────────────────────────────────
    const handleDelete = async () => {
+      console.log("add")
       setLoading(true);
       setError(null);
       try {
