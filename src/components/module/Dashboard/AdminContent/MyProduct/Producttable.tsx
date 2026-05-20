@@ -336,6 +336,8 @@ export default function ProductTable({ product }: { product: Product[] }) {
       product: Product;
       mode: "view" | "edit" | "delete";
    } | null>(null);
+     const [isDeleting, setIsDeleting] = useState(false);
+     const [isUpdating, setIsUpdating] = useState(false);
 
    const filtered =
       products?.filter((p) => {
@@ -378,6 +380,7 @@ export default function ProductTable({ product }: { product: Product[] }) {
    };
 
 const handleDelete = async (id: string) => {
+     setIsDeleting(true);
    try {
       const result = await deleteProduct(id);
       if (result?.success) {
@@ -389,6 +392,7 @@ const handleDelete = async (id: string) => {
             return next;
          });
          setModal(null);
+         toast("Product deleted successfully");
       } else {
          toast(result?.message || "Delete failed");
       }
@@ -397,16 +401,7 @@ const handleDelete = async (id: string) => {
       toast("Cannot connect to the server. Please check your internet and try again.");
    }
 };
-   // const handleDelete = async (id: string) => {
-   //    // setProducts((prev) => prev.filter((p) => p.id !== id));
-   //    await deleteProduct(id);
-   //    setSelectedIds((prev) => {
-   //       const next = new Set(prev);
-   //       next.delete(id);
-   //       return next;
-   //    });
-   //    setModal(null);
-   // };
+ 
 
    const handleBulkDelete = () => {
       setProducts((prev) => prev.filter((p) => !selectedIds.has(p.id)));

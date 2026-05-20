@@ -65,12 +65,19 @@ export default function OurProducts({ products }: OurProductsProps) {
    };
 
    return (
-      <section className="w-full py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
+      <section className="w-full py-16 md:py-24 bg-background">
          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={headerVariants} className="text-center mb-12 md:mb-16">
-               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Our Products</h2>
-               <div className="mt-2 h-1 w-20 bg-gray-900 rounded mx-auto" />
+               <h2 className="text-3xl md:text-6xl font-bold font-primary-bebas tracking-tight text-gray-900 dark:text-gray-300 mb-7">Our Products</h2>
+               {/* <div className="mt-2 h-1 w-20 bg-gray-900 rounded mx-auto" /> */}
+               <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.1, delay: 0.3 }}
+                  className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#bd9520] to-transparent"
+               />
                <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Crafted with passion, designed for your everyday life.</p>
             </motion.div>
 

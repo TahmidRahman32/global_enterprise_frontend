@@ -170,7 +170,7 @@ const SupportComponent: React.FC<SupportComponentProps> = ({
    };
 
    return (
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-accent-foreground">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
          {/* Background Elements */}
          <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-amber-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
@@ -186,7 +186,7 @@ const SupportComponent: React.FC<SupportComponentProps> = ({
                </Badge>
 
                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={titleVariants} className="relative">
-                  <h2 className="font-primary-inter font-bold text-4xl md:text-5xl pb-16 relative inline-block text-accent">
+                  <h2 className="font-primary-inter font-bold text-4xl md:text-5xl pb-16 relative inline-block text-foreground">
                      Dedicated Support
                      {/* Underline animation */}
                      <motion.div
@@ -269,7 +269,7 @@ const SupportComponent: React.FC<SupportComponentProps> = ({
 
                   {/* Support Channels */}
                   <motion.div variants={itemVariants}>
-                     <h3 className="text-4xl font-bold text-gray-500 font-primary-BB">Connect with Our Experts</h3>
+                     <h3 className="text-4xl font-bold text-foreground font-primary-BB">Connect with Our Experts</h3>
                      <p className="text-gray-600 mb-2">Our support team is available 24/7 to assist you with any questions or concerns.</p>
                      <p className="text-accent my-8">
                         Connect with our experts to get clear guidance and practical solutions tailored to your needs. Our experienced team is ready to answer your questions, share insights, and help you make confident decisions with ease.

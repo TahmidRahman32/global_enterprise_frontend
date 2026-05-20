@@ -74,6 +74,20 @@ export const adminNavItems: NavSections[] = [
             role: ["ADMIN", "SUPER_ADMIN"],
          },
          {
+            icon: "Wrench",
+            label: "Add Service",
+            href: "/admin/dashboard/add-service",
+            badge: "New",
+            role: ["ADMIN", "SUPER_ADMIN"],
+         },
+         {
+            icon: "Torus",
+            label: "Services",
+            href: "/admin/dashboard/services",
+            badge: "New",
+            role: ["ADMIN", "SUPER_ADMIN"],
+         },
+         {
             icon: "Settings",
             label: "Settings",
             href: "/settings",

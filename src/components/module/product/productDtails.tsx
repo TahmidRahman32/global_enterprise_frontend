@@ -7,9 +7,6 @@ import { CardItem } from "@/Types/product.interface";
 import OrderSheetDialog from "../order/OrderFrom";
 import { Button } from "@/components/ui/button";
 
-// ============================================================================
-// Helper Functions
-// ============================================================================
 
 const formatDate = (dateString: string): string => {
    return new Date(dateString).toLocaleDateString("en-US", {
@@ -27,18 +24,15 @@ const formatPrice = (price: number): string => {
    }).format(price);
 };
 
-// ============================================================================
-// Main Component
-// ============================================================================
 
 export default function ProductDetails({ product }: { product: CardItem }) {
    const [imageError, setImageError] = useState(false);
    const [isOpen, setIsOpen] = useState(false);
 
    // Derived values
-   const isInStock = product.stock > 0;
-   const isLowStock = product.stock > 0 && product.stock <= 5;
-   const imageSrc = !imageError && product.picture ? product.picture : "/placeholder-product.svg";
+   const isInStock = product?.stock > 0;
+   const isLowStock = product?.stock > 0 && product?.stock <= 5;
+   const imageSrc = !imageError && product?.picture ? product?.picture : "/placeholder-product.svg";
 
    // Animation variants
    const containerVariants = {
@@ -81,7 +75,7 @@ export default function ProductDetails({ product }: { product: CardItem }) {
                {/* Image Section - smaller on desktop, no badges overlay */}
                <motion.div variants={imageVariants} whileHover="hover" className="relative bg-gray-50 p-6 sm:p-8 flex items-center justify-center">
                   <div className="relative aspect-square w-full max-w-md mx-auto overflow-hidden rounded-xl bg-gray-100 shadow-md">
-                     <Image src={imageSrc} alt={product.name} fill className="object-cover" sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 30vw" priority onError={() => setImageError(true)} />
+                     <Image src={imageSrc} alt={product?.name} fill className="object-cover" sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 30vw" priority onError={() => setImageError(true)} />
                   </div>
                </motion.div>
 
@@ -89,9 +83,9 @@ export default function ProductDetails({ product }: { product: CardItem }) {
                <div className="flex flex-col p-6 sm:p-8 lg:p-10 lg:pr-8">
                   {/* Brand & Category Row */}
                   <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-4">
-                     {product.brand && <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800">{product.brand}</span>}
-                     {product.category ? (
-                        <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800">{product.category}</span>
+                     {product?.brand && <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800">{product?.brand}</span>}
+                     {product?.category ? (
+                        <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800">{product?.category}</span>
                      ) : (
                         <span className="inline-flex items-center rounded-full bg-gray-50 px-3 py-1 text-xs font-medium text-gray-500">Uncategorized</span>
                      )}
@@ -99,19 +93,19 @@ export default function ProductDetails({ product }: { product: CardItem }) {
 
                   {/* Product Name */}
                   <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
-                     {product.name}
+                     {product?.name}
                   </motion.h1>
 
                   {/* Price and Badges Row */}
                   <motion.div variants={itemVariants} className="mb-4">
                      <div className="flex flex-wrap items-baseline gap-3">
-                        <span className="text-4xl font-bold text-gray-900">{formatPrice(product.price)}</span>
+                        <span className="text-4xl font-bold text-gray-900">{formatPrice(product?.price)}</span>
                         <span className="text-sm text-gray-500">BDT</span>
                      </div>
 
                      {/* Badges (Active & In Stock) placed below the price */}
                      <div className="flex flex-wrap gap-2 mt-3">
-                        {product.isActive && <span className="inline-flex items-center rounded-full text-blue-100 px-3 py-1 text-xs font-semibold bg-blue-700">Active</span>}
+                        {product?.isActive && <span className="inline-flex items-center rounded-full text-blue-100 px-3 py-1 text-xs font-semibold bg-blue-700">Active</span>}
                         <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isInStock ? "text-green-100 bg-green-700 " : "bg-red-100 text-red-700"}`}>{isInStock ? "In Stock" : "Out of Stock"}</span>
                      </div>
                   </motion.div>
@@ -121,7 +115,7 @@ export default function ProductDetails({ product }: { product: CardItem }) {
                      <motion.div variants={itemVariants} className="mb-6">
                         <div className="flex items-center gap-2 text-lg bg-">
                            <span className="font-medium text-gray-700">Availability:</span>
-                           <span className="text-green-700 font-medium">{product.stock} units</span>
+                           <span className="text-green-700 font-medium">{product?.stock} units</span>
                            {isLowStock && <span className="text-amber-600 text-xs">(Low stock)</span>}
                         </div>
                      </motion.div>
@@ -130,15 +124,15 @@ export default function ProductDetails({ product }: { product: CardItem }) {
                   {/* Description Section */}
                   <motion.div variants={itemVariants} className="mb-6">
                      <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-2">Description</h3>
-                     <div className="prose prose-sm max-w-none text-gray-600">{product.description ? <p>{product.description}</p> : <p className="text-gray-400 italic">No description provided for this product.</p>}</div>
+                     <div className="prose prose-sm max-w-none text-gray-600">{product?.description ? <p>{product.description}</p> : <p className="text-gray-400 italic">No description provided for this product.</p>}</div>
                   </motion.div>
 
                   {/* Note Section (if exists) */}
-                  {product.note && (
+                  {product?.note && (
                      <motion.div variants={itemVariants} className="mb-6">
                         <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-2">Note</h3>
                         <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
-                           <p className="text-sm text-amber-800">{product.note}</p>
+                           <p className="text-sm text-amber-800">{product?.note}</p>
                         </div>
                      </motion.div>
                   )}
@@ -147,24 +141,24 @@ export default function ProductDetails({ product }: { product: CardItem }) {
                   <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 py-4 border-t border-b border-gray-100 my-4">
                      <div>
                         <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">SKU</dt>
-                        <dd className="text-sm font-mono text-gray-900 mt-1">{product.sku}</dd>
+                        <dd className="text-sm font-mono text-gray-900 mt-1">{product?.sku}</dd>
                      </div>
                      <div>
                         <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">Added</dt>
-                        <dd className="text-sm text-gray-900 mt-1">{formatDate(product.createdAt)}</dd>
+                        <dd className="text-sm text-gray-900 mt-1">{formatDate(product?.createdAt)}</dd>
                      </div>
                      <div>
                         <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">Last Updated</dt>
-                        <dd className="text-sm text-gray-900 mt-1">{formatDate(product.updatedAt)}</dd>
+                        <dd className="text-sm text-gray-900 mt-1">{formatDate(product?.updatedAt)}</dd>
                      </div>
                      <div>
                         <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">Product ID</dt>
-                        <dd className="text-sm font-mono text-gray-500 mt-1 truncate">{product.id.slice(0, 8)}...</dd>
+                        <dd className="text-sm font-mono text-gray-500 mt-1 truncate">{product?.id.slice(0, 8)}...</dd>
                      </div>
                   </motion.div>
 
                   {/* Dynamic Fields (if any) */}
-                  {product.dynamicFields && Object.keys(product.dynamicFields).length > 0 && (
+                  {product?.dynamicFields && Object.keys(product?.dynamicFields).length > 0 && (
                      <motion.div variants={itemVariants} className="mb-6">
                         <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">Additional Information</h3>
                         <div className="bg-gray-50 rounded-xl p-4 space-y-2">
@@ -199,7 +193,7 @@ export default function ProductDetails({ product }: { product: CardItem }) {
                      >
                         {/* <Button onClick={() => setIsOpen(true)}>Order now</Button> */}
                         add to cart
-                        <OrderSheetDialog isOpen={isOpen} onClose={() => setIsOpen(false)} productName={product.name} productPrice={product.price} productId={product.id} />
+                        <OrderSheetDialog isOpen={isOpen} onClose={() => setIsOpen(false)} productName={product?.name} productPrice={product?.price} productId={product?.id} />
                      </motion.button>
                   </motion.div>
 

@@ -62,7 +62,7 @@ export default async function Navbar() {
 
                {/* Right side */}
                <div className="flex flex-1 items-center justify-end gap-4">
-                  <NotificationMenu />
+                  {accessToken && <NotificationMenu />}
                   <ModeToggle />
                   {accessToken ? <LogoutDialog /> : <LoginButton />}
                   {/* <LoginButton /> */}

@@ -1,46 +1,26 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Barcode, Printer, Package, Zap, Hash, Layers } from "lucide-react";
+import { Barcode, Printer, Package, Zap, Hash, Layers, Settings, Star } from "lucide-react";
 
 interface Service {
-   icon: React.ReactNode;
+   icon: IconName;
    title: string;
    description: string;
 }
 
-const services: Service[] = [
-   {
-      icon: <Barcode className="w-8 h-8 text-blue-600" />,
-      title: "Custom Barcode Design",
-      description: "Create unique barcodes (UPC, EAN, QR, etc.) tailored to your product specifications and branding.",
-   },
-   {
-      icon: <Printer className="w-8 h-8 text-blue-600" />,
-      title: "Thermal Transfer Printing",
-      description: "High-quality, long-lasting labels using thermal transfer technology for industrial and retail use.",
-   },
-   {
-      icon: <Package className="w-8 h-8 text-blue-600" />,
-      title: "Durable Synthetic Labels",
-      description: "Waterproof, tear-resistant labels made from polyester, polypropylene, and other durable materials.",
-   },
-   {
-      icon: <Zap className="w-8 h-8 text-blue-600" />,
-      title: "High‑Speed Digital Printing",
-      description: "Fast turnaround digital printing for short runs and on-demand label production with variable data.",
-   },
-   {
-      icon: <Hash className="w-8 h-8 text-blue-600" />,
-      title: "Variable Data & Serialization",
-      description: "Sequential numbering, batch codes, expiration dates, and unique QR codes for traceability.",
-   },
-   {
-      icon: <Layers className="w-8 h-8 text-blue-600" />,
-      title: "Ribbons & Supplies",
-      description: "Compatible wax, wax/resin, and resin ribbons along with application accessories for your printers.",
-   },
-];
+
+export const ICON_MAP = {
+   Zap,
+   Printer,
+   Package,
+   Settings,
+   Star,
+   Barcode,
+   Hash,
+   Layers,
+} as const;
+export type IconName = keyof typeof ICON_MAP;
 
 // Animation variants
 const containerVariants = {
@@ -63,7 +43,8 @@ const itemVariants = {
    },
 };
 
-const ServicesSection: React.FC = () => {
+const ServicesSection= ({ services }: { services: Service[] }) => {
+   
    return (
       <section className="bg-gradient-to-b dark:from-black to-blue-950 py-16 md:py-24 overflow-hidden">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,18 +58,40 @@ const ServicesSection: React.FC = () => {
 
             {/* Service Grid with staggered animations */}
             <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-               {services.map((service, index) => (
+               {/* {services.map((service, index) => (
+                  
                   <motion.div
                      key={index}
                      variants={itemVariants}
                      whileHover={{ y: -8, boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.15)" }}
                      className="group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100/80 hover:border-blue-200/50"
                   >
-                     <div className="flex items-center justify-center w-16 h-16 bg-blue-50 group-hover:bg-blue-100 rounded-full mb-5 transition-colors duration-200">{service.icon}</div>
+                     
+                     <div className="flex items-center justify-center w-16 h-16 bg-blue-50 group-hover:bg-blue-100 rounded-full mb-5 transition-colors duration-200">{}</div>
                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
                      <p className="text-gray-600 leading-relaxed">{service.description}</p>
                   </motion.div>
-               ))}
+               ))} */}
+               {services.map((service, index) => {
+                  const Icon = ICON_MAP[service?.icon];
+
+                  return (
+                     <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        whileHover={{ y: -8, boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.15)" }}
+                        className="group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100/80 hover:border-blue-200/50"
+                     >
+                        <div className="flex items-center justify-center w-16 h-16 bg-blue-50 group-hover:bg-blue-100 rounded-full mb-5 transition-colors duration-200">
+                           {Icon ? <Icon className="w-6 h-6 text-blue-600" /> : <Package className="w-6 h-6 text-gray-400" />}
+                        </div>
+
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
+
+                        <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                     </motion.div>
+                  );
+               })}
             </motion.div>
 
             {/* Optional CTA */}

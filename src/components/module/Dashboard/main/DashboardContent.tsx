@@ -74,8 +74,7 @@ const MainDashboardContent = () => {
 
    return (
       <div className="flex h-screen bg-gray-300 dark:bg-gray-900">
-         {/* Sidebar */}
-         {/* <DashboardSideBar/> */}
+        
          {/* Main Content */}
          <div className="flex-1 flex flex-col overflow-hidden">
             {/* Main content area */}
@@ -145,8 +144,8 @@ const MainDashboardContent = () => {
 
                   {/* Quick Action */}
                   <motion.div variants={itemVariants}>
-                     <Card className="bg-indigo-50 dark:bg-indigo-950 border-indigo-200 dark:border-indigo-800">
-                        <CardContent className="p-6 flex items-center justify-between">
+                     <Card className="bg-indigo-50 dark:bg-gray-900 border-indigo-200 dark:border-indigo-800">
+                        <CardContent className="p-6 md:flex items-center justify-between space-y-4">
                            <div>
                               <h3 className="font-semibold text-indigo-800 dark:text-indigo-300 text-lg">Need to print a new label?</h3>
                               <p className="text-sm text-indigo-600 dark:text-indigo-400">Quickly create and print barcode labels in just a few clicks.</p>
