@@ -88,7 +88,7 @@ export default function ServiceList({ services = [], onAddNew }: ServiceListProp
    }, [router]);
 
    const handleDeleted = (id: string) => {
-      console.log(id, "row");
+     
       setLocalServices((prev) => prev.filter((s) => s.id !== id));
    };
 

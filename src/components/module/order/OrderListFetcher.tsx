@@ -2,6 +2,7 @@ import { queryStringFormatter } from '@/lib/formatters';
 
 import { getAllOrders } from './OrderAcrion';
 import OrderTableHeader from '../Dashboard/AdminContent/All-Order/OrderTableHeader';
+import MyOrdersClient from '../Dashboard/UserContent/myOrders/Myordersclient';
 interface OrderListFetcherProps {
    searchParams: { [key: string]: string | string[] | undefined };
 }
@@ -9,10 +10,12 @@ const OrderListFetcher = async ({ searchParams }: OrderListFetcherProps) => {
    const queryString = queryStringFormatter(searchParams);
    const AllOrders = await getAllOrders(queryString);
       // console.log(myOrders);
-      // console.log(AllOrders.data, "first");
+      console.log(AllOrders.data, "first");
       const orders = AllOrders?.data ?? [];
+       const meta = orders?.meta ?? { total: 0, limit: 10, page: 1 };
    return (
       <div>
+         {/* <MyOrdersClient initialOrders={orders} initialMeta={meta} />; */}
          <OrderTableHeader orders={orders}/>
          {/* <Pagination currentPage={userMetaData.page} totalPages={totalPages} /> */}
       </div>

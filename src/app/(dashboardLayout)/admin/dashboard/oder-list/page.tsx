@@ -1,11 +1,11 @@
 import OrderListSkeleton from "@/components/module/Dashboard/AdminContent/All-Order/OrderCardSkeleton";
-import { getMyOrders } from "@/components/module/order/OrderAcrion";
+// import { getMyOrders } from "@/components/module/order/OrderAcrion";
 import OrderListFetcher from "@/components/module/order/OrderListFetcher";
 import React, { Suspense } from "react";
 
 const OrderListPage = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) => {
    const searchParamsObj = await searchParams;
-   const myOrders = await getMyOrders();
+
    
    // console.log(orders, AllOrders.data._debugInfo);
    return (
@@ -25,3 +25,22 @@ const OrderListPage = async ({ searchParams }: { searchParams: Promise<{ [key: s
 };
 
 export default OrderListPage;
+
+
+// import { MyOrdersFetcher } from "@/components/module/Dashboard/UserContent/myOrders/MyOrdersFetcher";
+// import { MyOrdersSkeleton } from "@/components/module/Dashboard/UserContent/myOrders/MyOrdersSkeleton";
+// import { Suspense } from "react";
+
+
+// interface PageProps {
+//    searchParams: Promise<{ [key: string]: string | undefined }>;
+// }
+// export default async function OrderListPage({ searchParams }: PageProps) {
+//    const resolvedParams = await searchParams;
+
+//    return (
+//       <Suspense fallback={<MyOrdersSkeleton />} key={JSON.stringify(resolvedParams)}>
+//          <MyOrdersFetcher searchParams={resolvedParams} />
+//       </Suspense>
+//    );
+// }

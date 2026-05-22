@@ -18,7 +18,7 @@ const DataFetchingHeader = ({ userList = [] }: DataFetchingHeaderProps) => {
                paramName="status"
                placeHolder="Filter by status"
                options={[
-                  { label: "All", value: "All" },
+                  { label: "All", value: "" },
                   { label: "Active", value: "ACTIVE" },
                   { label: "Inactive", value: "INACTIVE" },
                   { label: "Deleted", value: "DELETE" },

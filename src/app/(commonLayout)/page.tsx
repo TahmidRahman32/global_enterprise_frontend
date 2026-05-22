@@ -16,6 +16,7 @@ const commonPage = () => {
    return (
       <div>
          <Hero></Hero>
+         <HomeProductCard></HomeProductCard>
          <Expertise></Expertise>
          <SupportComponent
             title="15 Years of Dedicated Support"
@@ -24,7 +25,7 @@ const commonPage = () => {
             yearsOfExperience={15}
             imageUrl="/our-support-team.jpg"
          />
-         <HomeProductCard></HomeProductCard>
+
          <ViewReview></ViewReview>
       </div>
    );

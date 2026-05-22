@@ -45,6 +45,8 @@ export interface IOrdersResponse {
 //    return token ? { Authorization: `Bearer ${token}` } : {};
 // }
 
+
+
 export async function getMyOrders(params?: { status?: string; searchTerm?: string; page?: number; limit?: number; sortBy?: string; sortOrder?: string }): Promise<IOrdersResponse> {
    try {
       // const authHeader = await getAuthHeader();
@@ -101,6 +103,62 @@ export async function getMyOrders(params?: { status?: string; searchTerm?: strin
       };
    }
 }
+// export async function getMyOrders(params?: { status?: string; searchTerm?: string; page?: number; limit?: number; sortBy?: string; sortOrder?: string }): Promise<IOrdersResponse> {
+//    try {
+//       // const authHeader = await getAuthHeader();
+
+//       // Build query string with all params
+//       const searchParams = new URLSearchParams();
+
+//       if (params?.status && params.status !== "ALL") {
+//          searchParams.set("status", params.status);
+//       }
+//       if (params?.searchTerm) {
+//          searchParams.set("searchTerm", params.searchTerm);
+//       }
+//       if (params?.page) {
+//          searchParams.set("page", String(params.page));
+//       }
+//       if (params?.limit) {
+//          searchParams.set("limit", String(params.limit));
+//       }
+//       if (params?.sortBy) {
+//          searchParams.set("sortBy", params.sortBy);
+//       }
+//       if (params?.sortOrder) {
+//          searchParams.set("sortOrder", params.sortOrder);
+//       }
+
+//       const query = searchParams.toString();
+
+//       const res = await serverFetch.get(`/order/my-orders${query ? `?${query}` : ""}`, {
+//          next: { tags: ["my-orders"], revalidate: 0 },
+//       });
+
+//       const result = await res.json();
+
+//       console.log("Orders response:", result); // ✅ debug log
+
+//       if (!res.ok) {
+//          return {
+//             success: false,
+//             meta: { total: 0, limit: 10, page: 1 },
+//             data: [],
+//             message: result.message || "Failed to fetch orders",
+//          };
+//       }
+
+//       return result;
+//    } catch (error: any) {
+//       console.error("Order fetch error:", error);
+//       return {
+//          success: false,
+//          meta: { total: 0, limit: 10, page: 1 },
+//          data: [],
+//          message: process.env.NODE_ENV === "development" ? error.message : "Failed to fetch orders",
+//       };
+//    }
+// }
 
 export interface IOrderUpdatePayload {
    name: string;

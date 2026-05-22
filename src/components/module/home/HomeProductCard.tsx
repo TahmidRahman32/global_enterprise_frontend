@@ -1,7 +1,8 @@
 // app/page.tsx or any page where you want the section
 
 import { getProducts } from "@/components/services/product/ProductFetching";
-import OurProducts from "../product/LandingPageProductCard";
+import OurProducts from "../product/HomePageProductSection/HomePageCarouselCard";
+
 
 export default async function HomeProductCard() {
    // You can pass your own product array (max 4 shown by design)

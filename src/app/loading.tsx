@@ -61,7 +61,7 @@ const loading = () => {
 
          {/* Label with bouncing dots */}
          <div className="flex items-center gap-2">
-            <span className="text-sm text-neutral-400 dark:text-neutral-500">Loading...</span>
+            <span className="text-sm text-neutral-400 dark:text-neutral-500">Loading</span>
             <div className="flex gap-1 items-center">
                {[0, 1, 2].map((i) => (
                   <span key={i} className="w-1 h-1 rounded-full bg-neutral-400 dark:bg-neutral-500 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />

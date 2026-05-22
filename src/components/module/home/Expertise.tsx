@@ -213,7 +213,7 @@ const Expertise = () => {
 
          {/* View All Button */}
          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.8 }} className="mt-16">
-            <Link href="/expertise" className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#bd9520] to-amber-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+            <Link href="/" className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#bd9520] to-amber-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                View All Expertise
                <motion.svg animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
