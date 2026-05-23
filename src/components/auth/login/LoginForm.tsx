@@ -31,7 +31,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
       success: false,
    });
 
-
    // console.log(state, "state")
 
    // Handle input changes
@@ -61,7 +60,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
          // Implement actual Google login logic here
          await new Promise((resolve) => setTimeout(resolve, 2000));
          toast.dismiss();
-         toast.success("Google login successful!");
+         toast.error("Google login Service Not Available.!");
       } catch (error) {
          toast.dismiss();
          toast.error("Google login failed. Please try again.");
@@ -75,7 +74,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
          // Implement actual GitHub login logic here
          await new Promise((resolve) => setTimeout(resolve, 2000));
          toast.dismiss();
-         toast.success("GitHub login successful!");
+         toast.error("GitHub  login Service Not Available.!");
       } catch (error) {
          toast.dismiss();
          toast.error("GitHub login failed. Please try again.");
@@ -109,13 +108,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
          {/* Form Container */}
          <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="w-full max-w-md">
-               <motion.form 
-                  variants={containerVariants} 
-                  initial="hidden" 
-                  animate="visible" 
-                  action={formAction} 
-                  className="text-white bg-white/2 backdrop-blur-md rounded-2xl shadow-2xl p-8 space-y-6 border border-white/20"
-               >
+               <motion.form variants={containerVariants} initial="hidden" animate="visible" action={formAction} className="text-white bg-white/2 backdrop-blur-md rounded-2xl shadow-2xl p-8 space-y-6 border border-white/20">
                   <motion.div variants={itemVariants} className="text-center">
                      <h2 className="text-4xl font-bold font-primary-inter">Welcome Back</h2>
                      <p className="font-primary-inter mt-2">Sign in to your account</p>
@@ -136,7 +129,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                         value={formData.email}
                         onChange={handleChange}
                         className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none placeholder:text-gray-300 text-white ${
-                           state.errors?.email ? 'border-red-500' : 'border-gray-400/30'
+                           state.errors?.email ? "border-red-500" : "border-gray-400/30"
                         }`}
                         placeholder="you@example.com"
                         disabled={isPending}
@@ -144,13 +137,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                         aria-describedby={state.errors?.email ? "email-error" : undefined}
                      />
                      {state.errors?.email && (
-                        <motion.p 
-                           id="email-error"
-                           initial={{ opacity: 0, y: -10 }} 
-                           animate={{ opacity: 1, y: 0 }} 
-                           className="text-red-400 text-sm mt-1"
-                           role="alert"
-                        >
+                        <motion.p id="email-error" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 text-sm mt-1" role="alert">
                            {state.errors.email}
                         </motion.p>
                      )}
@@ -162,12 +149,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                         <label htmlFor="password" className="block text-sm font-medium">
                            Password
                         </label>
-                        <motion.a 
-                           href="/forgot-password" 
-                           whileHover={{ scale: 1.05 }} 
-                           whileTap={{ scale: 0.95 }} 
-                           className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                        >
+                        <motion.a href="/forgot-password" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
                            Forgot password?
                         </motion.a>
                      </div>
@@ -181,16 +163,16 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                            value={formData.password}
                            onChange={handleChange}
                            className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none placeholder:text-gray-300 text-white pr-10 ${
-                              state.errors?.password ? 'border-red-500' : 'border-gray-400/30'
+                              state.errors?.password ? "border-red-500" : "border-gray-400/30"
                            }`}
                            placeholder="Enter your password"
                            disabled={isPending}
                            aria-invalid={!!state.errors?.password}
                            aria-describedby={state.errors?.password ? "password-error" : undefined}
                         />
-                        <button 
-                           type="button" 
-                           onClick={() => setShowPassword(!showPassword)} 
+                        <button
+                           type="button"
+                           onClick={() => setShowPassword(!showPassword)}
                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-300 hover:text-white focus:outline-none focus:text-white"
                            disabled={isPending}
                            aria-label={showPassword ? "Hide password" : "Show password"}
@@ -222,13 +204,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                                  <div
                                     key={index}
                                     className={`h-1 flex-1 rounded-full transition-all duration-300 ${
-                                       passwordValidation && index <= passwordValidation.passed 
-                                          ? index <= 2 
-                                             ? "bg-red-500" 
-                                             : index <= 4 
-                                                ? "bg-yellow-500" 
-                                                : "bg-green-500"
-                                          : "bg-gray-600"
+                                       passwordValidation && index <= passwordValidation.passed ? (index <= 2 ? "bg-red-500" : index <= 4 ? "bg-yellow-500" : "bg-green-500") : "bg-gray-600"
                                     }`}
                                     aria-hidden="true"
                                  />
@@ -284,13 +260,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                      )}
 
                      {state.errors?.password && (
-                        <motion.p 
-                           id="password-error"
-                           initial={{ opacity: 0, y: -10 }} 
-                           animate={{ opacity: 1, y: 0 }} 
-                           className="text-red-400 text-sm mt-1"
-                           role="alert"
-                        >
+                        <motion.p id="password-error" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 text-sm mt-1" role="alert">
                            {state.errors.password}
                         </motion.p>
                      )}
@@ -311,12 +281,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                      >
                         {isPending ? (
                            <>
-                              <motion.span 
-                                 animate={{ rotate: 360 }} 
-                                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }} 
-                                 className="inline-block mr-2"
-                                 aria-hidden="true"
-                              >
+                              <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="inline-block mr-2" aria-hidden="true">
                                  🔄
                               </motion.span>
                               Signing in...
@@ -329,12 +294,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
 
                   {/* Success/Error Message from action */}
                   {state.message && !state.errors && (
-                     <motion.p 
-                        initial={{ opacity: 0 }} 
-                        animate={{ opacity: 1 }} 
-                        className={`text-sm text-center ${state.success ? "text-green-400" : "text-red-400"}`}
-                        role="alert"
-                     >
+                     <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`text-sm text-center ${state.success ? "text-green-400" : "text-red-400"}`} role="alert">
                         {state.message}
                      </motion.p>
                   )}
@@ -395,12 +355,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                   <motion.div variants={itemVariants} className="text-center text-sm">
                      <p>
                         Don't have an account?{" "}
-                        <motion.a 
-                           href="/register" 
-                           whileHover={{ scale: 1.05 }} 
-                           whileTap={{ scale: 0.95 }} 
-                           className="text-blue-400 font-semibold hover:text-blue-300 transition-colors"
-                        >
+                        <motion.a href="/register" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="text-blue-400 font-semibold hover:text-blue-300 transition-colors">
                            Sign up
                         </motion.a>
                      </p>
@@ -413,7 +368,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
 };
 
 export default LoginForm;
-
 
 // "use client";
 // import Image from "next/image";
