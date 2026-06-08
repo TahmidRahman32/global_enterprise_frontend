@@ -81,7 +81,7 @@ export async function getMyOrders(params?: { status?: string; searchTerm?: strin
 
       const result = await res.json();
 
-      console.log("Orders response:", result); // ✅ debug log
+     // console.log("Orders response:", result); // ✅ debug log
 
       if (!res.ok) {
          return {

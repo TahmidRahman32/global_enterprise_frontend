@@ -13,7 +13,7 @@ export const saveService = async (prevState: any, formData: FormData) => {
    };
 
    const parsed = serviceSchema.safeParse(rawData);
-   console.log(parsed, "validation data");
+   // console.log(parsed, "validation data");
 
    if (!parsed.success) {
       return {
@@ -31,7 +31,7 @@ export const saveService = async (prevState: any, formData: FormData) => {
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
 
       return result;
    } catch (error) {
@@ -86,7 +86,7 @@ export async function updateServiceStatus(payload: IUpdateServicePayload): Promi
       });
 
       const result = await res.json().catch(() => ({}));
-      console.log(result, "update")
+      // console.log(result, "update")
 
       if (!res.ok) {
          return {
@@ -108,7 +108,7 @@ export async function updateServiceStatus(payload: IUpdateServicePayload): Promi
 }
 
 export async function deleteService(id: string): Promise<ActionResult> {
-   console.log(id, "Id")
+   // console.log(id, "Id")
    try {
       if (!id) return { success: false, message: "Service ID is required." };
 

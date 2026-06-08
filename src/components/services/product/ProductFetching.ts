@@ -447,7 +447,7 @@ export async function CreateProductFetching(_prevState: any, formData: FormData)
          errors: validatedPayload.errors,
       };
    }
-   console.log(validatedPayload, "validatedPayload-success");
+  // console.log(validatedPayload, "validatedPayload-success");
 
    if (!validatedPayload.data) {
       return {
@@ -456,7 +456,7 @@ export async function CreateProductFetching(_prevState: any, formData: FormData)
          formData: validationPayload,
       };
    }
-   console.log(validatedPayload, "validatedPayload-data-error");
+  // console.log(validatedPayload, "validatedPayload-data-error");
 
    const newFormData = new FormData();
    newFormData.append("data", JSON.stringify(validatedPayload.data));

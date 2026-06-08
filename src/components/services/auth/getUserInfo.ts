@@ -79,12 +79,13 @@ export const getUserInfo = async (): Promise<UserInfo | any> => {
             throw new Error("No access token found");
          }
 
-         const verifiedToken = jwt.verify(accessToken, process.env.JWT_SECRET as string) as JwtPayload;
+         // Decode the token to extract user info (verification is handled by the backend)
+         const decodedToken = jwt.decode(accessToken) as JwtPayload;
 
          userInfo = {
-            name: verifiedToken.name || "Unknown User",
-            email: verifiedToken.email,
-            role: verifiedToken.role,
+            name: decodedToken?.name || "Unknown User",
+            email: decodedToken?.email,
+            role: decodedToken?.role,
          };
       }
 

@@ -374,7 +374,7 @@ export default function ProductTable({ product }: { product: Product[] }) {
    };
 
    const handleSave = (updated: Product) => {
-      console.log(updated)
+      // console.log(updated)
       setProducts((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
       setModal(null);
    };

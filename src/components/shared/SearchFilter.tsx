@@ -35,7 +35,7 @@ const SearchFilter = ({ placeHolder = "Search...", paramName = "searchTerm" }: S
       startTransition(() => {
          router.push(`?${params.toString()}`);
         
-         console.log("checking");
+        // console.log("checking");
 
          // router.replace(`?${params.toString()}`, { scroll: false });
       });

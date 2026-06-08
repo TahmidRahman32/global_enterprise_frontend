@@ -149,7 +149,7 @@ export default function OrderTable({ orders: apiOrders }: { orders: ApiOrder[] }
       // alert(`Edit order #${order.id} – implement your edit logic`);
    };
    const handleDelete = (id: string) => {
-      console.log(id)
+      // console.log(id)
       setOrders((prev) => prev.filter((s) => s.id !== id));
      
    };

@@ -47,7 +47,7 @@ interface MyOrdersClientProps {
 }
 
 export default function MyOrdersClient({ initialOrders, initialMeta }: MyOrdersClientProps) {
-   console.log(initialOrders, "initialOrder");
+   // console.log(initialOrders, "initialOrder");
    const router = useRouter();
    const searchParams = useSearchParams();
    const [, startTransition] = useTransition();

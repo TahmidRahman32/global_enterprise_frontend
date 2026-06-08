@@ -32,7 +32,7 @@ export async function createMassageAction(data: IMassageFormData) {
          description: data.message, // Map message to description
       };
 
-      console.log("Sending massage data:", backendData);
+     // console.log("Sending massage data:", backendData);
 
       const response = await serverFetch.post("/massage/create", {
          headers: {
@@ -42,7 +42,7 @@ export async function createMassageAction(data: IMassageFormData) {
       });
 
       const result = await response.json();
-      console.log("Response from /massage/create:", result);
+     // console.log("Response from /massage/create:", result);
 
       return result;
    } catch (error: any) {
@@ -63,7 +63,7 @@ export async function getMassages(queryString?: string) {
          },
       });
       const result = await response.json();
-      console.log(result, "result check")
+    //  console.log(result, "result check")
       return result;
    } catch (error: any) {
       console.error("Error fetching massages:", error);

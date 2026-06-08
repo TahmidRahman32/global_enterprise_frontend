@@ -1,8 +1,8 @@
-// lib/api/products.ts
-// import { Product } from "@/product.interface"; // adjust path as needed
+"use server";
 
 import { serverFetch } from "@/lib/server-fetch";
 import { Product } from "./product.interface";
+import { revalidateTag } from "next/cache";
 
 // ─── Shared response shape ────────────────────────────────────────────────────
 export interface ApiResponse<T = void> {
@@ -30,11 +30,13 @@ export async function updateProduct(id: string, payload: Partial<Product>): Prom
 
 // ─── Delete a product (DELETE /api/products/:id) ──────────────────────────────
 export async function deleteProduct(id: string) {
-   console.log(id)
-   const res = await serverFetch.delete(`/product/${id}`, {});
+   // console.log(id)
+   const res = await serverFetch.delete(`/product/${id}`, {
+   });
 
    const result = await res.json();
-   console.log(result,"testing delete product")
+   revalidateTag("product-list", { expire: 0 });
+   // console.log(result,"testing delete product")
   
 
    if (!res.ok) {

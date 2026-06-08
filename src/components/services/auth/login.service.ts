@@ -37,7 +37,7 @@ export const submitActionLogin = async (prevState: ActionState, formData: FormDa
       //     headers: { "Content-Type": "application/json" },
       //     body: JSON.stringify({ name, email, password }),
       //  });
-      console.log({email, password})
+     // console.log({email, password})
 
       // const res = await fetch(`http://localhost:5000/api/v1/auth/login`, {
       //    method: "POST",
@@ -60,10 +60,10 @@ export const submitActionLogin = async (prevState: ActionState, formData: FormDa
       const setCookieHeader = res.headers.getSetCookie();
       if (setCookieHeader && setCookieHeader.length > 0) {
          setCookieHeader.forEach((cookieString: string) => {
-            console.log(cookieString, "cookie parser log for each");
+          //  console.log(cookieString, "cookie parser log for each");
             const cookiesParse = parse(cookieString);
 
-            console.log("Parsed cookies:", cookieString, cookiesParse);
+          //  console.log("Parsed cookies:", cookieString, cookiesParse);
             if (cookiesParse["accessToken"]) {
                accessTokenObject = cookiesParse["accessToken"];
             }
@@ -79,10 +79,10 @@ export const submitActionLogin = async (prevState: ActionState, formData: FormDa
          throw new Error("Tokens not found in cookies");
       }
 
-      console.log({
-         accessTokenObject,
-         refreshTokenObject,
-      });
+      // console.log({
+      //    accessTokenObject,
+      //    refreshTokenObject,
+      // });
 
       const cookieStore = await cookies();
       cookieStore.set("accessToken", accessTokenObject!, {

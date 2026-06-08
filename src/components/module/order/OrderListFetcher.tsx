@@ -10,7 +10,7 @@ const OrderListFetcher = async ({ searchParams }: OrderListFetcherProps) => {
    const queryString = queryStringFormatter(searchParams);
    const AllOrders = await getAllOrders(queryString);
       // console.log(myOrders);
-      console.log(AllOrders.data, "first");
+     // console.log(AllOrders.data, "first");
       const orders = AllOrders?.data ?? [];
        const meta = orders?.meta ?? { total: 0, limit: 10, page: 1 };
    return (

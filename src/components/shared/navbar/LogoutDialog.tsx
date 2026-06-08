@@ -10,7 +10,7 @@ const LogoutDialog = () => {
       // Implement your logout logic here, such as clearing tokens, redirecting, etc.
       await logoutUser();
 
-      console.log("User logged out");
+      //console.log("User logged out");
    };
    return (
       <div>

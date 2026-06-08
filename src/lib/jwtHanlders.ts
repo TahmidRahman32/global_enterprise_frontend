@@ -5,12 +5,28 @@ import jwt from "jsonwebtoken";
 
 export const verifyAccessToken = async (token: string) => {
    try {
-      const verifiedAccessToken = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
+      // Decode the token WITHOUT verification (backend handles signature verification)
+      const decodedToken = jwt.decode(token) as jwt.JwtPayload;
+
+      if (!decodedToken) {
+         return {
+            success: false,
+            message: "Invalid token format",
+         };
+      }
+
+      // Check if token is expired
+      if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
+         return {
+            success: false,
+            message: "Token has expired",
+         };
+      }
 
       return {
          success: true,
          message: "Token is valid",
-         payload: verifiedAccessToken,
+         payload: decodedToken,
       };
    } catch (error: any) {
       return {

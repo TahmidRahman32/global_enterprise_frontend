@@ -44,11 +44,11 @@ const Register = () => {
      useEffect(() => {
         if (state.message) {
            if (state.success) {
-              console.log(state.message, "success");
+            //   console.log(state.message, "success");
               toast.success(state.message);
               // Handle successful login (redirect, etc.)
            } else {
-              console.log(state.message, "error");
+            //   console.log(state.message, "error");
               toast.error(state.message);
            }
         }

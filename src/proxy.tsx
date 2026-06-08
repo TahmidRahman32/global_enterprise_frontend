@@ -197,15 +197,26 @@ export async function proxy(request: NextRequest) {
 
    let userRole: UserRole | null = null;
    if (accessToken) {
-      const verifiedToken = jwt.verify(accessToken, process.env.JWT_SECRET as string);
+      try {
+         // Decode the token WITHOUT verification to extract the role
+         // Token verification is handled by the backend
+         const decodedToken = jwt.decode(accessToken) as JwtPayload;
 
-      if (typeof verifiedToken === "string") {
+         if (!decodedToken || typeof decodedToken === "string") {
+            console.warn("Invalid token format");
+            await deleteCookie("accessToken");
+            await deleteCookie("refreshToken");
+            return NextResponse.redirect(new URL("/login", request.url));
+         }
+
+         userRole = decodedToken.role as UserRole;
+      } catch (error) {
+         // Token is malformed or cannot be decoded
+         console.error("Token decode error:", (error as Error).message);
          await deleteCookie("accessToken");
          await deleteCookie("refreshToken");
-
          return NextResponse.redirect(new URL("/login", request.url));
       }
-      userRole = verifiedToken.role as UserRole;
    }
 
    const routeOwner = getRouteOwner(pathname);

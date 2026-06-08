@@ -26,7 +26,7 @@ const ProductForm: React.FC = () => {
    const [state, formAction, isPending] = useActionState(CreateProductFetching, null);
    const [imagePreview, setImagePreview] = useState<string | null>(null);
    
-       console.log(state, "state")
+      //  console.log(state, "state")
    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
 

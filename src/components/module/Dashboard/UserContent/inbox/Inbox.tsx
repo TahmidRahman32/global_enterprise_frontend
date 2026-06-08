@@ -20,7 +20,7 @@ export default function InboxClient({ messages }: InboxClientProps) {
    const [replyTarget, setReplyTarget] = useState<Message | null>(null);
 
    const markMessageAsRead = (id:string)=>{
-      console.log("add",id)
+      // console.log("add",id)
    }
 
    // ── Mark as read ────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ export default function InboxClient({ messages }: InboxClientProps) {
    const handleDelete = async (id: string) => {
       const confirmed = window.confirm("Delete this message? This cannot be undone.");
       if (!confirmed) return;
- console.log(id,"delete")
+//  console.log(id,"delete")
       // const result = await deleteMessage(id);
       // if (result.success) {
       //    toast.success("Message deleted");

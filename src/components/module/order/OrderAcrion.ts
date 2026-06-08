@@ -68,7 +68,7 @@ export async function getAllOrders(queryString: string) {
       const result = await response.json();
       return result;
    } catch (error: any) {
-      console.log(error);
+     // console.log(error);
       return {
          success: false,
          message: `${process.env.NODE_ENV === "development" ? error.message : "order fetching field!!"}`,
@@ -86,7 +86,7 @@ export async function getMyOrders() {
       const result = await response.json();
       return result;
    } catch (error: any) {
-      console.log(error);
+    //  console.log(error);
       return {
          success: false,
          message: `${process.env.NODE_ENV === "development" ? error.message : "order fetching field!!"}`,
@@ -95,7 +95,7 @@ export async function getMyOrders() {
 }
 
 export async function UpdateStatusByOrder(id: string, payload: string) {
-   console.log(id, payload);
+  // console.log(id, payload);
    try {
       const response = await serverFetch.patch(`/order/${id}`, {
          headers: {
@@ -108,7 +108,7 @@ export async function UpdateStatusByOrder(id: string, payload: string) {
       revalidateTag("order-me", { expire: 0 });
       return result;
    } catch (error: any) {
-      console.log(error);
+    //  console.log(error);
       return {
          success: false,
          message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
@@ -123,7 +123,7 @@ export async function deleteOrder(id: string) {
       revalidateTag("order-list", { expire: 0 });
       return result;
    } catch (error: any) {
-      console.log(error);
+    //  console.log(error);
       return {
          success: false,
          message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,

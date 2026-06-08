@@ -17,7 +17,7 @@ export async function getAllUsers(queryString?: string) {
 }
 
 export async function UpdateStatusByUserId(id: string, payload: string) {
-   console.log(payload, id);
+  // console.log(payload, id);
    try {
       const response = await serverFetch.patch(`/user/update-status/${id}`, {
          headers: {
@@ -26,8 +26,8 @@ export async function UpdateStatusByUserId(id: string, payload: string) {
          body: JSON.stringify({ status: payload }),
       });
       const result = await response.json();
-      console.log(response, "response");
-      console.log(result, "result");
+     // console.log(response, "response");
+     // console.log(result, "result");
       return result;
    } catch (error: any) {
       console.log(error);

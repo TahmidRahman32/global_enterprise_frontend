@@ -5,7 +5,7 @@ import React from "react";
 
 const servicesPage = async () => {
    const services = await getServices()
-   console.log(services)
+   // console.log(services)
    return (
       <div>
          <ServicesSection services={services?.data} />
