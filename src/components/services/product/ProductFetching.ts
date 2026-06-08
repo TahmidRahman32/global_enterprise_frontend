@@ -495,6 +495,9 @@ export async function getProducts() {
          },
       });
       const result = await response.json();
+      if (result.success) {
+         revalidateTag("products-list", { expire: 0 });
+      }
       return result;
    } catch (error: any) {
       console.log(error);
