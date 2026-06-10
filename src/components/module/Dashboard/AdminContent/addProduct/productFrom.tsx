@@ -32,8 +32,11 @@ const ProductForm: React.FC = () => {
 
       if (file) {
          // Client-side size check (optional, for better UX)
-         if (file.size > 5 * 1024 * 1024) {
-            alert("Image must be less than 5MB");
+         if (file.size > 1 * 1024 * 1024) {
+           toast.error("Image must be less than 1MB", {
+              description: "Please choose a smaller image.",
+              duration: 5000,
+           });
             e.target.value = "";
             return;
          }
@@ -110,7 +113,7 @@ const ProductForm: React.FC = () => {
                               </div>
                               <div className="flex-1">
                                  <Input id="file" name="file" type="file" accept="image/*" onChange={handleImageChange} className="cursor-pointer" />
-                                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Recommended: Square image, max 5MB. PNG or JPG.</p>
+                                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Recommended: Square image, max 1MB. PNG or JPG.</p>
                                  {state?.errors?.file && <p className="text-sm text-red-600 mt-1">{state.errors.file[0]}</p>}
                               </div>
                            </div>
