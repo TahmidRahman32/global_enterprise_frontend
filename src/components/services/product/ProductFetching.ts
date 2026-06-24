@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidator } from "@/lib/zodValidator";
 import { revalidateTag } from "next/cache";
@@ -447,7 +447,7 @@ export async function CreateProductFetching(_prevState: any, formData: FormData)
          errors: validatedPayload.errors,
       };
    }
-  // console.log(validatedPayload, "validatedPayload-success");
+   // console.log(validatedPayload, "validatedPayload-success");
 
    if (!validatedPayload.data) {
       return {
@@ -456,7 +456,7 @@ export async function CreateProductFetching(_prevState: any, formData: FormData)
          formData: validationPayload,
       };
    }
-  // console.log(validatedPayload, "validatedPayload-data-error");
+   // console.log(validatedPayload, "validatedPayload-data-error");
 
    const newFormData = new FormData();
    newFormData.append("data", JSON.stringify(validatedPayload.data));
@@ -472,7 +472,7 @@ export async function CreateProductFetching(_prevState: any, formData: FormData)
       const result = await response.json();
 
       if (result.success) {
-      revalidateTag("products-list", "max");
+         revalidateTag("product-list", { expire: 0 });
       }
 
       return result;
@@ -491,7 +491,8 @@ export async function getProducts() {
       const response = await serverFetch.get("/product/all", {
          cache: "force-cache",
          next: {
-            tags: ["products-list"],
+            tags: ["product-list"],
+            revalidate: 0,
          },
       });
       const result = await response.json();
@@ -509,7 +510,7 @@ export async function getProductById(id: string) {
    try {
       const response = await serverFetch.get(`/product/${id}`, {
          next: {
-            tags: [`product-list`]
+            tags: [`product-list`],
          },
       });
       const result = await response.json();
